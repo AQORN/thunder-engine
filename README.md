@@ -36,14 +36,14 @@ Burn and install this base ISO on the machine designated as main Thunder hardwar
 
 2.To fetch the latest source and base OS images, run these:
 
-    # git clone https://github.com/AQORN/thunder-community
+    # git clone https://github.com/AQORN/thunder-engine
     # wget http://old-releases.ubuntu.com/releases/12.04.2/ubuntu-12.04.2-server-amd64.iso
-    # cp ubuntu-12.04.2-server-amd64.iso thunder-community/system/
+    # cp ubuntu-12.04.2-server-amd64.iso thunder-engine/system/
 
 3.Run initial installer script from console to setup base packages and env.
 
-    # chmod +x thunder-community/system/thunder_build.sh
-    # thunder-community/system/thunder_build.sh
+    # chmod +x thunder-engine/system/thunder_build.sh
+    # thunder-engine/system/thunder_build.sh
     
 
   This would take a while as it has to install various packages and copy files to appropriate locations.
