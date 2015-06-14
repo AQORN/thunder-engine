@@ -1,6 +1,6 @@
-# Thunder Community Edition
+# Thunder Engine
 
-This repository contains AQORN Thunder Community Edition "Aerosmith" release, its dependencies and installation instructions.
+This repository represents the AQORN Thunder Engine, its dependencies and installation instructions.
 
 Thunder is a GUI based software tool for deployment and management of OpenStack based clusters. It is developed using Django and allows end to end deployment of OpenStack clusters through a simple, coherent and comprehensive Graphical User Interface.
 
@@ -8,7 +8,7 @@ Documentation of Thunder can be found at http://docs.aqorn.com/thunder/
 
 A live demo of Thunder is available at http://www.thunder-demo.com
 
-Contact us for additional support via http://www.aqorn.com/support
+Thunder Community will be avauilable soon with a bunch of extra features that leverage this engine. Visit http://www.aqorn.com/products
 
 Prerequisites for Thunder setup
 ===============================
