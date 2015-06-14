@@ -1,6 +1,6 @@
 # Thunder Community Edition
 
-This repository contains AQORN Thunder Community Edition, its dependencies and installation instructions.
+This repository contains AQORN Thunder Community Edition "Aerosmith" release, its dependencies and installation instructions.
 
 Thunder is a GUI based software tool for deployment and management of OpenStack based clusters. It is developed using Django and allows end to end deployment of OpenStack clusters through a simple, coherent and comprehensive Graphical User Interface.
 
