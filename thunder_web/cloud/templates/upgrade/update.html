@@ -1,0 +1,72 @@
+<!-- HTML page to display the thunder update screen -->
+<script src="/site_media/js/uploader.js"></script>
+
+<div id="update-thunder">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-5 col-xs-5">
+                <div id="patchTypeContent">
+                    <b>What are micro patches?</b>
+                    <p>Micro patches update Thunder with highly targeted updates
+                        to improve functionality and / or performance</p>
+                    <br> <b>What are macro patches?</b>
+                    <p>Macro patches are patches that multiple several patches at
+                        once.</p>
+                    <br> <b>Where do I find patches?</b>
+                    <p>Thunder micro and macro patches are available in the user
+                        area at www.aqorn.com</p>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-7 col-xs-7 support_bdr" id="uploadPatchContent">
+                <div id="patchContent">
+                    <form id="uploadPatchFileForm" action="updatePatch" method="post" 
+                            enctype="multipart/form-data" target="file_upload" >
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <b>Upload Patch</b>
+                                <p>Should be in .micro or .macro format.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <input type="file" id="patch_file" name="patch_file">
+                            </div>
+                            <div class="col-sm-3">                            	
+                                <button name="upload-patch"  id="upload-patch"
+                                	{% if settings.SIMULATOR_MODE %}
+                                		disabled
+                                	{% endif %} 
+                                    class="btn btn-info active" type="button">UPLOAD</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row col-sm-12">
+                        <div id="update_status_display_container">
+                            <div id="update_status_display"></div>
+                        </div>
+                    </div>
+                    <div class="row message-padding">
+                        <div class="well well-sm">Installed Patches</div>
+                        <div id="installed-patch-version-content" class="patch-release-content">
+                            <!-- Display the thunder versions installed -->
+                            {% for updateVersion in updatedVersions %}
+                                <div class="col-sm-12">
+                                    <div class="patch-releases-left col-sm-11">
+                                        {{updateVersion.version}}
+                                    </div>
+                                    {% if updateVersion.can_rollback %}
+                                        <div class="col-sm-1 patch-releases-btn">
+                                            <a href="#" id="patchVersion-{{updateVersion.id}}" class="rollback-version">x</a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

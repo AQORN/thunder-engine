@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Edit cloud{% endblock %}
+{% block head %}Edit cloud{% endblock %}
+{% block content %}
+	<form method="post" action=".">
+		{% csrf_token %}
+		{{ cloud.as_table }}		
+		<input type="submit" class="btn btn-primary btn-sm" value="Edit cloud" />	
+	</form>
+{% endblock %}

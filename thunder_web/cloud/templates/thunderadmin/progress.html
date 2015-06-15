@@ -1,0 +1,59 @@
+{% extends "thunderadmin/base.html" %}
+{% block title %}Installation Progress{% endblock %} 
+{% block head %}Installation Progress{% endblock %}
+{% block content %}
+<script>
+$(document).ready(function() {  
+    
+    // Triggers the installation request
+    $.ajax({
+        type: 'GET',
+        url: "/admin/installService",
+        success: function (xhr, ajaxOptions, thrownError) {
+            status = xhr.status;
+            
+            // Executes if response is success
+            if (status == 'true') {
+                
+                // Sets the percentage
+                $("#progress_status").html(xhr.progress_state + "%"); 
+                
+                if (xhr.progress_state == 100) {
+                    $(location).attr('href', $(location).prop('href'));
+                }
+            } else {
+                $("#err_msg_container").html(xhr.error);
+                $("#retry_install").show();
+            }
+        }
+    });
+    
+    // To call the function to check the progress of module installation
+    timeout = setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: "/admin/getInstallationStatus",
+                    success: function (xhr, ajaxOptions, thrownError) {
+                        status = xhr.status;
+                        
+                        // Executes if response is success
+                        if (status == 'true') {
+                            
+                            // Sets the percentage
+                            $("#progress_status").html(xhr.progress_state + "%"); 
+                        }
+                    }
+                });
+            }, 5000);
+});
+</script>
+    <div id="progress_status">
+        {{progress_state}}%
+    </div>
+    <div id="retry_install">
+        <p id="err_msg_container"></p>
+        <p id="reload_link">
+            <a href="#" onclick="location.reload(true)" class="yellow">Try Again</a>
+        </p>
+    </div>
+{% endblock %}

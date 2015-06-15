@@ -1,0 +1,13 @@
+<%= node['openstack']['object-storage']['custom_template_banner'] %>
+
+[Unit]
+Description=<%= @description %>
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=<%= @user %>
+ExecStart=<%= @exec %>
+
+[Install]
+WantedBy=multi-user.target

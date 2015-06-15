@@ -1,0 +1,113 @@
+<div id="roleContent">
+	<div id="roleContainers row">
+		<div id="roleNotifications" class="col-sm-5 left-padding">
+            <br> <br> <br>
+            <ul class="noList">
+                <li><b>ThunderAdmin:&nbsp;</b>Individual Cloud or Thunder (all clouds)</li>
+                <li><b>CloudAdmin:&nbsp;</b>View, change configurations or deploy</li>
+                <li><b>Engineer:&nbsp;</b>View or change cloud configurations</li>
+                <li><b>User:&nbsp;</b>View cloud configurations only</li>
+            </ul>
+    		<div id="roleCreate">
+    			<form id='role_add_form' class="align-rght">
+                    <b>CREATE A NEW ROLE</b>
+                    <hr class="divider">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" name="role_name" id="role_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" id="roleErr">
+                            <div id="roleErrText"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>Domain</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <select name="domain_list" id="domain_list">
+                                    <option value="" disabled>Select Domain</option>
+                                    {% for domain in view.domainList %}
+                                        <option value="{{domain.id}}">{{domain.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" id="cloudDomainErr">
+                            <div id="cloudDomainErrText"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>Permission</label> 
+                            </div>
+                            <div class="col-sm-9">
+                                <select name="permission_list" id="permission_list">
+                                    <option value="">Select Permission</option>
+                                    {% for permission in view.rolePermissionList %}
+                                        <option value="{{permission.id}}">{{permission.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" id="permissionErr">
+                            <div id="permissionErrText"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" name="role_add" id="role_add" value="Create Role" style="float: right;"
+                                class="btn btn-info active">CREATE ROLE</button>
+                    </div>
+    		    </form>
+            </div>
+		</div>
+	</div>
+	<div id="roleList" class="col-sm-7 alert-col2-left">
+        <div class="col-sm-12"> 
+            <br><br><br>
+            <b>EXISTING ROLES</b>
+
+            <hr class="divider">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="col-sm-5">
+                        <b>Role</b>
+                    </div>
+                    <div class="col-sm-4">
+                        <b>Domain</b>
+                    </div>
+                    <div class="col-sm-3">
+                        <b>Permission</b>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row message-padding">
+                <div class="" id="domainRoleList"></div>
+            </div>
+            <!-- {% for roles in view.domainRoles %}
+                {% if request.session.cloudAccessMapData.domainId == 1 or request.session.cloudAccessMapData.domainId == roles.domain_id %}
+                    <tr class="{% cycle 'trrows' 'row2' %}">
+                        <td>{{roles.role}}</td>
+                        <td>{{roles.domain}}</td>
+                        <td>{{roles.permission}}</td>
+                    </tr>
+                    <tr><td class="blank-line"></td></tr>
+                {% endif %}
+            {% endfor %} -->
+        </div>		
+	</div>	
+</div>

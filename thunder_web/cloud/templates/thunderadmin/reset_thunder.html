@@ -1,0 +1,37 @@
+{% extends "thunderadmin/base.html" %}
+{% block title %}Reset Thunder{%endblock %}
+{% block head %}Reset Thunder{% endblock %}
+{% block backimg %}<img src="{{ base_url }}site_media/thunderadmin/back.png">{% endblock%}
+{% block toplink %}<a class="yellow" href="{{ base_url }}admin/config/">Back to Safety</a>{% endblock%}
+{% block content %}
+<div id="login">
+     <form method="post" action="#" class="form-horizontal">
+        {% for field in forms%}
+            <div class="form-group">
+                <div class="col-sm-7 errormsg">
+                    <strong>!! STOP AND READ THIS !!</strong>
+                </div>
+                <div class="col-sm-7 errormsg">
+                    THIS ACTION WILL DESTROY AND RESET ALL THUNDER DATA, ALERT HISTORY, CONFIGURATIONS--EVERYTHING. BUT IT WILL RETAIN ALL FUNCTIONAL AND SECURITY PATCHES. BUT ANY CLOUDS THAT HAVE BEEN DEPLOYED WILL BE DELETED. .
+                </div>
+                <div class="col-sm-7 errormsg">
+                    THIS ACTION HAS==NO RECOVERY==AND ==NO ROLLBACK==AND IS PROBABLY THE MOST DISRUPTIVE THING YOU CAN DO.
+                </div>
+                <div class="col-sm-7 errormsg">
+                    IF YOU PROCEED, DO NOT SAY WE DIDN'T WARN YOU.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">{{field.label_tag}}</label>
+                <div class="col-sm-8">{{field}}{{field.errors}}</div>
+            </div>
+        {% endfor%}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Reset Everything" class="col-sm-offset-1 btn btn-info" />
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

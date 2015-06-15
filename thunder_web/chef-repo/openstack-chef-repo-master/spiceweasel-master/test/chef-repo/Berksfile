@@ -1,0 +1,4 @@
+source 'https://api.berkshelf.com'
+
+cookbook 'chef-pry', '0.2.0'
+cookbook 'def', path: 'cookbooks/def'

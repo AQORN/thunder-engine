@@ -1,0 +1,257 @@
+/************************************************************************************
+Document : custom.css #
+Created on : May 13 2015 Author : Binoy M V
+Description: Styling for the admin area .
+*************************************************************************************/
+/* CSS Document */
+@import url(fonts.css?family=fontawesome);
+/* ---------- FONTAWESOME ---------- */
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+html {
+    
+}
+
+body {
+    background: url(../admin_bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #FFFFFF;
+    color: #FFFFFF !important;
+}
+
+.vertical-space {
+    margin-top: 6%;
+}
+
+.top-space {
+    margin-top: 1%;
+}
+
+.yellow,.yellow:hover {
+    color: #FFB325;
+    text-decoration: none;
+}
+
+.row.thunder-wrapper {
+    
+}
+
+ul {
+    margin-left: -20px;
+}
+
+ul li,.success {
+    list-style: none;
+    margin-bottom: 3px;
+}
+
+.success {
+    background: url("../success.png") no-repeat scroll 2px 50% #e9ffd9;
+    border: 1px solid #a6ca8a;
+    padding: 5px 0 5px 23px;
+    color: #000000;
+}
+
+.error {
+    background: url("../error.png") no-repeat scroll 2px 50% #ffecec;
+    border: 1px solid #f5aca6;
+    padding: 5px 0 5px 23px;
+    color: #000000;
+}
+
+/* Style changes for message  display */
+.top-message {
+    padding: 0 !important;
+}
+
+.top-message .error {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: red;
+    list-style: outside none none;
+    padding: 5px 0;
+}
+
+.login_err {
+    color: red;
+}
+
+#thunder-container {
+    
+}
+
+#id_formLevel {
+    margin-left: -25px;
+}
+
+.buttons {
+    margin-left: 17px;
+    margin-top: 7px;
+}
+
+.sub-heading {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.side-logo {
+    margin-top: 30px;
+}
+
+.row {
+    margin-left: 2px;
+}
+
+input[type="text"],input[type="password"],input[type="email"],.btn {
+    background: transparent;
+    border-radius: 0px 3px 3px 0px;
+    color: #ffffff;
+    width: 230px;
+    border: 1px solid #bfbfbf;
+    height: 35px;
+}
+
+.btn-info {
+    background-image: url("../orange-button.png") !important;
+    border-color: transparent !important;
+    text-transform: uppercase;
+    width: auto;
+}
+
+.form-horizontal .control-label {
+    text-align: left !important;
+    color: #606468;
+}
+
+label {
+    color: #606468;
+}
+
+.errorlist {
+    color: #FF0000;
+}
+
+.access-column {
+    position: relative;
+    margin-top: 9%;
+}
+
+.back-button {
+    text-align: right;
+    margin-top: 4px;
+}
+
+.back-link {
+    font-size: 18px;
+    margin-left: -12px;
+    text-align: left;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.group {
+    margin-bottom: 10px;
+}
+
+.errormsg {
+    color: #FF0000;
+    margin-bottom: 16px;
+}
+
+p span {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #bfbfbf -moz-use-text-color #bfbfbf #bfbfbf;
+    border-image: none;
+    border-style: solid none solid solid;
+    border-width: 1px 0 1px 1px;
+    padding-left: 5px;
+}
+
+form span {
+    background-color: #363b41;
+    border-radius: 3px 0 0 3px;
+    color: #ffffff;
+    display: block;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 35px;
+}
+
+.tooltips {
+    outline: none;
+}
+
+.tooltips strong {
+    line-height: 30px;
+}
+
+.tooltips:hover {
+    text-decoration: none;
+}
+
+.tooltips span {
+    z-index: 10;
+    display: none;
+    padding: 1px 20px;
+    margin-top: 30px;
+    margin-left: -160px;
+    width: 330px;
+    line-height: 16px;
+}
+
+.tooltips:hover span {
+    display: inline;
+    position: absolute;
+    border: 2px solid #FFF;
+}
+
+.callout {
+    z-index: 20;
+    position: absolute;
+    border: 0;
+    top: -14px;
+    left: 120px;
+}
+
+.tooltips span {
+    border-radius: 2px;
+    box-shadow: 0px 0px 8px 4px #666;
+    /*opacity: 0.8;*/
+}
+
+.forgot-pass a,.forgot-pass a:hover {
+    color: #ffb325;
+}
+
+input[type="checkbox"],input[type="radio"] {
+    margin-right: 2px !important;
+}
+
+#progress_status {
+    width: 220px;
+    height: 19px;
+    /*border: 1px solid #FFB325;*/
+    background: url("../ajax-loader.gif") no-repeat scroll;
+    background-color: ajax-loader.gif;
+    padding-left: 100px;
+    color: #FFB325;
+    font-size: 10px;
+    padding-top: 2px;
+    font-weight: bold;
+}
+
+#retry_install {
+    display: none;
+}

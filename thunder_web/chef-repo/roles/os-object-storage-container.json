@@ -1,0 +1,7 @@
+{
+    "name": "os-object-storage-container",
+    "description": "OpenStack object storage container service",
+    "run_list": [
+         "recipe[openstack-object-storage::container-server]"
+    ]
+}

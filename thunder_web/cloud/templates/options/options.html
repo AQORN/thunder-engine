@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Options{% endblock %}
+{% block head %}Options{% endblock %}
+{% block menutab %}
+	{% include "menu.html" %}
+{% endblock %}
+{% block content %} 
+<!-- top section -->
+<div class="top-head tablebg">
+	<div class="col-md-12 title-bg">Configuration Summary</div>
+	<div class="col-md-4">
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Mode</span>
+	 		<span class="col-md-6">High Availability</span>
+		</div>
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Hypervisor</span>
+ 			<span class="col-md-6">KVM</span>
+		</div>
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Network</span>
+ 			<span class="col-md-6">Neutron GRE Tunneling</span>
+		</div>			 
+	</div>
+	<div class="col-md-4">
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Object storage</span>
+	 		<span class="col-md-6">Swift</span>
+		</div>
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Glance back-end</span>
+	 		<span class="col-md-6">Swift</span>
+		</div>
+		<div class="col-md-12">
+			<span class="col-md-6 bold">Cinder Back-end</span>
+	 		<span class="col-md-6">Local Disk</span>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="col-md-12">
+			<div class="col-md-6 bold">Message Queue</div>
+	 		<div class="col-md-6">RabbitMQ</div>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6 bold">Database</div>
+	 		<div class="col-md-6">Mysql</div>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6 bold">Monitoring</div>
+	 		<div class="col-md-6">Nagios</div>
+		</div>
+	</div>
+</div>
+<div id="option-submit"><input type="submit" class="btn btn-danger btn-sm btn-left" value="Save Changes" class="submit" /></div>
+<div class="top-head">
+	<div class="col-xs-6">
+		<div class="section-title">OpenStack Administrator Details</div>
+		<div class="section-block">
+			<div class="column-data">
+				<span class="col-xs-6">Default Username</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+			<div class="column-data">
+				<span class="col-xs-6">Default Password</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+			<div class="column-data">
+				<span class="col-xs-6">Default Tenant</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+			<div class="column-data">
+				<span class="col-xs-6">Default Email</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="section-title">Logging</div>
+		<div class="section-block">
+			<div class="column-data">
+				<span class="col-xs-6">Syslog Server</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+			<div class="column-data">
+				<span class="col-xs-6">Port</span>
+			 	<span class="col-xs-6"><input type="text"></span>
+			</div>
+			<div class="column-data">
+				<span class="col-xs-6">Protocol</span>
+			 	<span class="col-xs-6">
+			 		<span class="col-xs-3"><input type="radio"></span>
+			 		<span class="col-xs-3">UDP</span>
+			 		<span class="col-xs-3"><input type="radio"></span>
+			 		<span class="col-xs-3">TCP</span>
+			 	</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Set default level to DEBUG</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="top-head">
+	<div class="col-xs-6">
+		<div class="section-title">Shared</div>
+		<div class="section-block">
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Automatically assign floating IP's for guests</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Auto start guests when hosts boots</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Use RAW images instead of QCOW</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Enable Nova quotas</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="section-title">Storage</div>
+		<div class="section-block">
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Use Ceph for Nova Ephemeral storage</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Object storage replication</span>
+			</div>
+			<div class="column-data">
+				<span class="col-md-1"><input type="checkbox"></span>
+			 	<span class="col-md-10">Use Object stroage for Glance stroage</span>
+			</div>			
+		</div>
+	</div>
+</div>
+{% endblock %}

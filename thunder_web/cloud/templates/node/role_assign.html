@@ -1,0 +1,47 @@
+{% load render_table from django_tables2 %} 
+{% block content %}
+<div id="nodesList">
+    <form action="../roleAssign/" method="post">
+        <div class="row">
+            <div class="col-sm-3 bak-2-col">
+                {% for role in roles %}
+                    <div class="row checkbox-inline vertical-space" style="margin-left: 10px;">
+                        <label>
+                            <input type=checkbox name="do_assign[]" class="roleAssign" value="{{role.id}}">{{role.role_typename}}
+                        </label>
+                        <p>{{role.role_details}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-9 scroll-bar vertical-space">
+                {% if nodes %} 
+                    {% for node in nodes %}
+                        <div class="col-sm-12 add-assign left">
+                            <div class="left">
+                                <input type=checkbox name="assignode[]" id="server{{node.nodelistId}}" class="serverassign" value="{{node.nodelistId}}">
+                            </div>
+                            <div class="left list-role">
+                                <b>{{node.host_name}}</b>
+                            </div>
+                            <div class="left list-role">
+                                {% if node.node_up %} 
+                                    <span class="online">Online</span>
+                                {% else %} 
+                                    <span class="offline">Offline</span>
+                                {% endif %}
+                            </div>
+                            <!-- <div class="left list-role">{{node.mac_id|title}}</div> -->
+                            <div class="left list-role">Core:{{node.core}}</div>
+                            <div class="left list-role">Ram:{{node.ram}}GB</div>
+                            <div class="left list-role">HDD:{{node.hdd}}</div>
+                            <div class="left list-role">NIC's:{{node.nics}}</div>
+                        </div>
+                    {% endfor %} 
+                {% endif %} 
+                <button type="submit" value="Apply Role" id="configure-role" disabled="" class="btn btn-info active">APPLY ROLE</button>
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

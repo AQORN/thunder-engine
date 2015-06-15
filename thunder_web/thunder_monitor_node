@@ -1,0 +1,15 @@
+#!/bin/bash
+# @author: Geo Varghese
+# @create_date: 12-Mar-2015
+# @modified by: Geo Varghese    
+# @modified_date: 12-Mar-2015
+# @linking to other page: 
+# @description: The job processing service
+
+# infinite loop to process the job pool
+while true
+do
+    python /opt/thunder_web/monitor_node.py 1
+    echo "Sleep for 50 seconds"
+    sleep 50s    
+done

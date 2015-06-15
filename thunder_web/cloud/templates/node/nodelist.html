@@ -1,0 +1,81 @@
+{% extends "base.html" %} 
+{% load render_table from django_tables2 %} 
+{%block title %}Roles{% endblock %} 
+{% load django_bootstrap_breadcrumbs %} 
+{% block breadcrumbs %} 
+    {% breadcrumb "Clouds" "/" %} 
+    {% breadcrumb node_name|title "" %} 
+    {% breadcrumb "Roles" "" %} 
+{% endblock %} 
+{% block head %}Roles{% endblock %} 
+{% block extra_js%}
+    <script src="/site_media/js/jquery.form.js"></script>
+{% endblock %} 
+{% block menutab %}
+    {% include "menu.html" %}
+{% endblock%} 
+{% block content %}
+<div class="col-sm-12 col-xs-12" id="panel">
+    <div class="row">
+        <div class="col-lg-12">
+            <section>
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal" class="modal fade"></div>
+                <div id="node-data" class="row">
+                    <div class="row" id="node-header">
+                        <!-- Displays only if the user have privilege -->
+                        {% if 'deploy_cloud' in request.session.cloudAccessMapData.featureAccess %}
+                        <div class="select-all left select-all allChk">
+                            <input type="checkbox" value="{{id}}"  name="do_select" id="selecctall">
+                        </div>
+                        <div class="col-xs-1 node-btn" id="addNodes"></div>
+                        <div id="removeNodes" class="col-xs-1 remove-button node-btn"></div>
+                        <div id="configureNode" class="col-xs-1 node-btn"></div>
+                        {% endif %}
+                        <div id="search-form" class="col-xs-8">
+                            <form action="#" method="post" id="search-form">
+                                <div class="search-box">{{form.query}}</div>
+                                <div class="search-box">
+                                    <input type="submit" class="btn go-button bt" value="">
+                                </div>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+                    <div id="node-list" class="col-xs-12 col-sm-12">
+                        {% if nodes %} 
+                            {% for node_id, node in nodes.items %}
+                            <div class="col-sm-12 {% cycle 'odd' 'even' %} bdr left role_pad">
+                                <div class="select-all left">
+                                    <input type="checkbox" class="nodeCheckbox"  name="do_delete" value="{{node.role_id}}-{{node.id}}">
+                                </div>
+                                <div class="left list-role">
+                                    <b>{{node.host_name|title}}</b>
+                                </div>
+                                <div class="left list-role">
+                                    {% if node.node_up %} 
+                                        <span class="online">Online</span>
+                                    {% else %} 
+                                        <span class="offline">Offline</span>
+                                    {% endif %}
+                                </div>
+                                <div class="left list-role role-type">{{node.role_typename|title}}</div>
+                                <div class="left list-role">CORES:{{node.core|title}}</div>
+                                <div class="left list-role">RAM:{{node.ram|title}}GB</div>
+                                <div class="left list-role">HDD:{{node.hdd|title}}GB</div>
+                                <div class="left list-role">NICs:{{node.nics}}</div>
+                                {%if node.jobProgress != 0 %}
+                                    <div class="left list-role"> {{node.jobProgress}}%</div>
+                                {%endif%}
+                            </div>
+                            {% endfor%}
+                        {% else %}
+                            <div class="col-xs-12">No Node found.</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+            <input type="hidden" id="confignodeId" value="test"> 
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1219 @@
+/*Document : style.css
+Created on : 19-JAn-2015
+Author : binoy m v	
+Description: Give style to the templates
+*/
+#nav {
+    float: right;
+}
+
+.modal-body {
+    /*float: left; */
+    
+}
+
+input {
+    display: block;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #D3D3D3;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    padding: 3px 6px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s
+        ease-in-out 0s;
+    width: 100%;
+}
+
+.panel-heading {
+    background-color: #fff !important;
+}
+
+.navbar-brand {
+    background-color: red !important;
+    background: url('images/logo.png') 100px 72px;
+    background-size: 117px auto;
+}
+
+input[type="number"],input[type="number"] {
+    width: 53%;
+}
+
+button,html input[type="button"],input[type="reset"],input[type="submit"]
+    {
+    padding: 3px;
+}
+
+.project_meta {
+    float: left;
+    height: 50px;
+    padding: 15px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #0033CC;
+}
+
+.menu {
+    float: left;
+    display: inline;
+    padding: 5px;
+}
+
+.navbar-menu {
+    line-height: 25px;
+    padding-left: 20%;
+}
+
+#menustr {
+    float: left;
+    list-style: none;
+    display: inline;
+}
+
+.limenu {
+    float: left;
+    display: inline;
+    margin: 1px 1px;
+    background-color: #808080;
+    padding: 2px 13px 2px 10px;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.cloudlist {
+    
+}
+
+.cloudata {
+    background: url('images/thunder.png');
+    background-repeat: no-repeat;
+    width: 128px;
+    height: 128px;
+    float: left;
+    padding: 3px;
+    text-align: center;
+    background-position: 0px 0px;
+    margin: 5px;
+}
+
+.cloudDetails {
+    text-align: center;
+    color: #000;
+    vertical-align: center;
+    padding: 43px 23px;
+    float: left;
+    background-position: 0px 0px;
+}
+
+.cloudAdd {
+    background-position: -130px 31px;
+    float: left;
+    margin-left: 28px;
+    background: url("images/thunder.png") repeat scroll 22% -7% transparent;
+    width: 54px;
+    height: 81px;
+}
+
+.panel-default,.panel-heading {
+    float: left;
+}
+
+.odd {
+    background-color: #EEEEEE;
+    margin: 10px 0px;
+}
+
+.even {
+    background-color: #fff;
+    margin: 10px 0px;;
+}
+
+.nodesList td {
+    padding: 4px;
+}
+
+.roleAssign {
+    float: left;
+}
+
+td,th {
+    vertical-align: top;
+}
+
+.border-class {
+    border: 1px solid red;
+    background-color: #F2F2F2;
+}
+
+.roleAssign {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.btn-right {
+    float: right;
+}
+/* Setting the message background */
+.error {
+    background: #ffecec url('images/error.png') no-repeat 2px 50%;
+    border: 1px solid #f5aca6;
+    padding: 5px 0px 5px 23px;
+}
+
+.success {
+    background: #e9ffd9 url('images/success.png') no-repeat 2px 50%;
+    border: 1px solid #a6ca8a;
+    padding: 5px 0px 5px 23px;
+}
+
+.warning {
+    background: #fff8c4 url('images/warning.png') no-repeat 2px 50%;
+    border: 1px solid #f2c779;
+    padding: 5px 0px 5px 23px;
+}
+
+.notice {
+    background: #e3f7fc url('images/notice.png') no-repeat 2px 50%;
+    border: 1px solid #8ed9f6;
+    padding: 5px 0px 5px 23px;
+}
+
+.messages {
+    padding-left: 0px !important;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.nodeConfigure td {
+    padding: 2px;
+}
+
+.traligncenter {
+    text-align: center;
+}
+
+.tdaligncenter {
+    vertical-align: middle !important;
+}
+
+.sub-heading {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.blank-line {
+    padding: 2px;
+}
+
+input[type="submit"] {
+    text-transform: uppercase;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.tabViews {
+    display: inline;
+}
+
+#domainNotifications {
+    border-color: lime;
+    padding-left: 10px;
+}
+
+#domainCreate {
+    border-color: fuchsia;
+    padding-left: 10px;
+}
+
+#domainList {
+    border-color: olive;
+    float: right;
+    width: 50%
+}
+
+#domainContainers {
+    width: 50%;
+    float: left;
+}
+
+ul {
+    padding-left: 1px;
+}
+/* RBAC */
+.roleDesc {
+    
+}
+
+.roleTypes {
+    display: inline-block;
+    font-weight: bold;
+    width: 82px;
+}
+
+#roleContent {
+    display: inline-block;
+}
+
+#roleContainers {
+    width: 54%;
+    float: left;
+}
+
+#roleNotifications {
+    border-color: lime;
+    padding-left: 10px;
+}
+
+#roleNotifications  ul li {
+    list-style: none;
+}
+
+#roleCreate {
+    border-color: fuchsia;
+    padding-left: 10px;
+}
+
+.roleUl {
+    
+}
+
+.tabViews {
+    background: none repeat scroll 0 0 #eee;
+    border: 1px solid #ccc;
+    padding: 11px;
+    position: relative;
+    margin-left: -1px;
+}
+
+.tabViews.active {
+    background: none repeat scroll 0 0 #FFF;
+    border-bottom: 1px solid #FFF;
+}
+
+.tab {
+    border: 1px solid #ccc;
+}
+
+.popHeading {
+    padding: 5px 0;
+    font-weight: normal;
+}
+
+.trpopHeading {
+    border-bottom: 1px solid #ccc;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.tr-header {
+    background-color: #848484;
+    color: #FFFFFF;
+}
+
+.trrows {
+    background-color: #E6E6E6;
+    color: #000000;
+}
+
+.bulletList li {
+    list-style: inside;
+}
+
+.tab-window {
+    padding: 15px;
+}
+
+#menustr li {
+    cursor: pointer;
+}
+
+.supporthead,.updateHead {
+    background-color: #E6E6E6;
+    font-size: 22px;
+}
+
+.subsupport {
+    color: #FF0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.support {
+    padding: 10px;
+}
+
+#thunder-control {
+    font-size: 20px;
+}
+
+#log-details {
+    background-color: #ccc;
+    margin-top: 10px;
+}
+
+.addon-title {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.addon-desc {
+    
+}
+
+.addon-details {
+    width: 40%;
+}
+
+.addon-text {
+    color: blue;
+    width: 70%;
+}
+
+.addon-name {
+    width: 30%;
+}
+/* network page */
+#public-network-title,#floating-network-title,#internal-network-title,#storage-network-title,#common-setting-title,#private-setting-title
+    {
+    width: 99%;
+    float: left;
+    background-color: #848484;
+    font-size: 18px;
+    color: #FFF;
+    padding-left: 3px;
+    margin: 3px;
+}
+
+.interface {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.public-label,.public-ip-from,.publish-dash,.public-ip-to,.public-action
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+.public-network-container {
+    float: left;
+    width: 100%;
+}
+
+#public-network-cidr {
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+/* Style changes for floating ip cidr - Start */
+#floating-ip-network-cidr {
+    float: left;
+    display: block;
+    width: 100%;
+}
+/* Style changes for floating ip cidr - Stop */
+#pn-cidr-label,#pn-cidr-input,#pn-cidr-use-vlan,#pn-cidr-use-vlan-label,#pn-cidr-vlan-input,#pn-cidr
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+#internal-cidr-label,#internal-cidr-input,#internal-cidr-use-vlan,#internal-cidr-use-vlan-label,#internal-cidr-vlan-input,#internal-cidr
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+#storage-cidr-label,#storage-cidr-input,#storage-cidr-use-vlan,#storage-cidr-use-vlan-label,#storage-cidr-vlan-input,#floating-ip-cidr-input
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+#common-setting,#private-setting {
+    width: 100%;
+    float: left;
+}
+
+#storage-network,#storage-network-desc {
+    width: 100%;
+    float: left;
+}
+
+#gre-tunnel-label,#gre-tunnel-from,#gre-tunnel,#gre-tunnel-to,#pg-network-label,#pg-network-input
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+#gre-tunnel-from {
+    width: 131px;
+}
+
+#pg-network {
+    float: left;
+    width: 100%;
+}
+
+#top-head {
+    float: left;
+}
+
+#gre-tunnel-desc {
+    float: right;
+    text-align: right;
+    padding-right: 5px;
+}
+
+#network-submit {
+    float: right;
+}
+
+.dns-server {
+    width: 100%;
+    float: left;
+}
+
+/* Styling for private network - Start */
+.private-network {
+    width: 100%;
+    float: left;
+}
+/* Styling for private network - End */
+.dns-server-label,.dns-server-from {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+.errorlist {
+    color: #ff0000;
+}
+
+.float-ip-from,.float-dash,.float-ip-to,.float-action,.float-network-ips,.float-label,#floating-ip-cidr-label
+    {
+    float: left;
+    width: auto;
+    display: inline;
+}
+
+.float-network-ips {
+    float: left;
+    width: 100%;
+}
+
+#internal-network-desc {
+    float: left;
+    width: auto;
+    display: block;
+}
+
+#internal-network-cidr {
+    width: 100%;
+    float: left;
+}
+
+label {
+    padding: 5px;
+}
+
+.dash {
+    padding: 0px 7px;
+}
+
+#internal-network,#floating-network,#public-network,#storage-network,#common-setting,#private-setting
+    {
+    background-color: #f5f5f5;
+    float: left;
+    margin: 10px 1px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+#pn-cidr-label,#internal-cidr-label,#storage-cidr-label {
+    padding-right: 27px;
+}
+
+#pn-cidr-use-vlan,#internal-cidr-use-vlan,#storage-cidr-use-vlan {
+    padding-left: 3px;
+}
+
+.dns-action {
+    padding-left: 20px;
+}
+
+#public-network-desc,#floating-network-desc,#internal-network-desc,#storage-network-desc,#common-setting-desc,#private-setting-desc
+    {
+    padding-left: 5px;
+}
+
+.add-dns,.remove-dns,.remove-float,.add-float,.remove-public,.add-public,.add-private-network,.remove-private-network
+    {
+    padding-left: 5px;
+    color: #0042f6;
+}
+
+#id_gre_tunnel_from {
+    width: 100%;
+}
+
+.btn-violet {
+    background-color: #7030A0;
+    color: #FFFFFF;
+}
+
+#network-config-left {
+    float: left;
+    width: 35%;
+    background-color: #fff;
+}
+
+#network-config-right {
+    float: right;
+    width: 65%;
+    background-color: #fff;
+}
+
+#verify-network {
+    float: left;
+    background-color: #fff;
+}
+
+.verify-result {
+    display: inline;
+    float: right;
+    width: 51%;
+}
+
+.load-image {
+    float: right;
+    width: 24%;
+}
+
+.verify-button {
+    display: inline;
+    float: left;
+    width: 23%;
+}
+
+#verify-results {
+    
+}
+
+.message-head {
+    background-color: #848484;
+    color: #fff;
+    float: left;
+    font-size: 18px;
+    margin: 3px;
+    padding-left: 3px;
+    width: 99%;
+}
+
+.go-button {
+    background-color: #808080;
+    border-color: #808080;
+    color: #fff;
+}
+
+.search-box {
+    display: inline;
+    float: left;
+}
+
+.row-color {
+    background-color: #EEEEEE;
+}
+
+.panel-heading {
+    width: 100%;
+}
+
+.panel-default {
+    width: 100%;
+}
+
+/* node list */
+#node-header {
+    width: 100%;
+}
+
+.select-all {
+    float: left;
+}
+
+#add-button {
+    display: inline;
+    float: left;
+    width: 3%;
+    padding-left: 5px;
+}
+
+#remove-button {
+    display: inline;
+    float: left;
+    width: 3%;
+}
+
+#config-button {
+    display: inline;
+    float: left;
+    width: 3%;
+}
+
+#search-form {
+    display: inline;
+    float: right;
+}
+
+.node-row-color {
+    background-color: #eeeeee;
+    float: left;
+    width: 100%;
+    height: auto;
+    line-height: 32px;
+}
+
+.node-msg {
+    float: left;
+    width: 10%;
+}
+
+.node-nic {
+    float: left;
+    width: 10%;
+}
+
+.node-ram {
+    float: left;
+    width: 10%;
+}
+
+.node-hdd {
+    float: left;
+    width: 10%;
+}
+
+.node-core {
+    float: left;
+    width: 10%;
+}
+
+.node-role {
+    float: left;
+    width: 10%;
+}
+
+.node-status {
+    float: left;
+    width: 10%;
+}
+
+.node-server {
+    float: left;
+    padding-left: 5px;
+    width: 10%;
+}
+
+.no-record {
+    float: left;
+    width: 100%;
+}
+
+.coulmn-1 {
+    width: 30%;
+    float: left;
+    display: block;
+}
+
+.column-data {
+    float: left;
+    width: 100%;
+}
+
+.config-title {
+    font-weight: bold;
+}
+/* options*/
+.top-head {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.section-block {
+    float: left;
+}
+
+.section-title {
+    background-color: #848484;
+    color: #fff;
+    float: left;
+    font-size: 18px;
+    margin: 3px;
+    padding-left: 10px;
+    width: 99%;
+}
+
+.title-bg {
+    background-color: #848484;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+#option-submit {
+    float: left;
+}
+
+.tablebg {
+    background-color: #eee;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.delete-cloud {
+    float: left;
+}
+
+.top-buffer {
+    padding-top: 20px;
+}
+
+.bottom-buffer {
+    padding-bottom: 20px;
+}
+
+.panel-title {
+    color: #97ABBD;
+}
+
+#cloud-name {
+    color: blue;
+    font-weight: bold;
+}
+
+.node-count-title {
+    color: #ff0816;
+    font-weight: bold;
+    padding: 10px 13px;
+    position: relative;
+}
+
+.help-text {
+    width: 100%;
+    float: left;
+    font-size: 20px;
+    background-color: #848484;
+    color: #ffffff;
+    padding-left: 10px;
+    margin: 5px 0;
+}
+
+.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9
+    {
+    list-style: none;
+}
+
+.page-header {
+    margin-top: 0px !important;
+}
+/* for the status */
+.statusOk {
+    background: green;
+    height: 32px;
+    width: 366px;
+}
+
+.statusError {
+    background: red;
+    height: 32px;
+    width: 366px;
+}
+
+.status {
+    position: absolute;
+    left: 35%;
+}
+
+.status .statusText {
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    height: 30px;
+    line-height: 13px;
+    position: absolute;
+    text-align: center;
+    top: 4px;
+    width: 362px;
+}
+
+.reshedule,.view-more {
+    cursor: pointer;
+}
+
+.modal-content {
+    float: left;
+    padding-bottom: 21px;
+}
+
+.right-float {
+    float: right;
+}
+
+/* Styles for RBAC module - Start */
+#scope_list {
+    width: 100%;
+}
+
+#domainList th.popHeading {
+    width: 45%;
+}
+
+#scopeErr,#domainErr,#permissionErr,#cloudDomainErr,#roleErr,#accountErr,#userErr,#passwordErr,#emailErr,#userRoleErr
+    {
+    display: none;
+    color: red;
+}
+
+#roleList {
+    float: right;
+    width: 45%;
+}
+
+#domainRoleList,#domainCloudList {
+    width: 98%;
+}
+
+#domainContent,#userContent {
+    display: inline-block;
+    width: 100%;
+    padding-left: 10px;
+}
+
+#userContainers {
+    width: 50%;
+    float: left;
+}
+
+#userList {
+    width: 50%;
+    float: right;
+}
+
+#userRoleList {
+    width: 98%;
+}
+/* Styles for RBAC module - End */
+
+/*For the option page*/
+ol,ul {
+    list-style: none;
+}
+
+#id_Protocol li {
+    display: inline;
+    float: left;
+}
+
+#id_Protocol input {
+    float: left;
+    width: 25px;
+}
+
+.online {
+    color: #00e600;
+    font-weight: bold;
+}
+
+.offline {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.breadcrumb>li+li::before {
+    color: #ccc;
+    content: "";
+    padding: 0 5px;
+}
+
+.sidebar {
+    margin-top: 100px;
+}
+
+.breadcrumbsrow {
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+}
+
+/* Left menu changes - Start */
+.fa-desktop {
+    margin-right: 5px;
+}
+
+.reshedule {
+    margin-right: 10px;
+}
+
+#welcome_text {
+    color: #337ab7 !important;
+    margin-top: 14px;
+}
+
+#welcome_text i {
+    color: #E95623 !important;
+}
+
+#log-details-tab {
+    width: 100%;
+}
+
+#log-details-tab {
+    border-collapse: collapse;
+}
+
+#log-details-tab,#log-details-tab th,#log-details-tab td {
+    border: 1px solid black;
+    padding: 4px;
+}
+
+#log-details-tab th {
+    background-color: #ccc;
+}
+
+#log-details-tab td {
+    background-color: #F2F1F0;
+}
+/* Left menu changes - End */
+
+/* Alert popup style changes - Start */
+#black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: 0.60;
+    filter: alpha(opacity = 80);
+}
+
+#alert_log_details {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: auto;
+    padding: 16px;
+    border: 10px solid #C3D1DC;
+    background-color: white;
+    z-index: 1002;
+    overflow: auto;
+}
+
+#alert_close {
+    float: right;
+}
+
+.divider {
+    list-style: none;
+}
+
+.alert-class {
+    color: #FFFFFF;
+}
+/* Alert popup style changes - End */
+
+/* Style changes for update - Start */
+#updateThunderBtnDiv {
+    margin-bottom: 10px;
+}
+
+#updateThunderMain {
+    width: 100%;
+    display: inline-block;
+}
+
+#updateThunderLeft {
+    width: 30%;
+    float: left;
+    border-right: 1px solid;
+}
+
+#updateThunderRight {
+    width: 65%;
+    float: right;
+}
+
+.patch-upload-sec {
+    width: 80%;
+    display: inline-flex;
+    background-color: #D8D8D8;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.patch-upload-btn {
+    width: 20%;
+    text-align: right;
+}
+
+.patch-upload-sec-right {
+    padding-top: 5px;
+    float: right;
+    text-align: right;
+    width: 60%;
+}
+
+.patch-upload-sec-left {
+    width: 35%;
+    font-size: 20px;
+}
+
+.update_qtn {
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: red;
+    margin-top: 10%;
+}
+
+.patch-upload-sec-main {
+    width: 100%;
+    display: inline-flex;
+}
+
+.patch-updates-head {
+    width: 100%;
+    background-color: #7F7F7F;
+    border-radius: 5px;
+    padding: 3px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.patch-releases {
+    margin-top: 2%;
+    max-height: 100px;
+    width: 100%;
+    display: inline-flex;
+}
+
+.patch-release-content {
+    max-height: 190px;
+    overflow: auto;
+}
+
+.patch-releases-left {
+    width: 88%;
+    background-color: #D8D8D8;
+    border-radius: 5px;
+    padding: 3px;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 2%;
+    color: #7030AA;
+}
+
+.patch-releases-right {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 1px 10px;
+    width: 5%;
+}
+
+#update_status_display_container {
+    height: 40px;
+    border: 1px solid #fff;
+}
+
+#update_status_display {
+    display: none;
+    margin-top: 5px;
+}
+
+
+a.rollback-version {
+    color: red;
+    text-decoration: none;
+}
+
+/* Style changes for update - End */
+
+.lan {
+    float: left;
+}
+
+.lan-data {
+    
+}
+
+.connectedSortable {
+    width: 100%;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+}
+
+.connectedSortable li {
+    font-size: 1.2em;
+    margin: 5px;
+    padding: 0 47px;
+    width: 150px;
+}
+
+.nicData {
+    float: left;
+    width: 20px !important;
+}
+
+.mapping {
+    background-color: silver;
+    float: left;
+    padding: 2px;
+}
+
+.breadcrumb>li+li:before {
+    color: #337ab7;
+    /*content: '\25BA';*/
+    content: '>';
+    padding: 0 5px;
+}
+
+.breadcrumb .divider {
+    display: none;
+}
+
+.pre-load {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(./images/loader.gif) center no-repeat #fff;
+}

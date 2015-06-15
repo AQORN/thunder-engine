@@ -1,0 +1,23 @@
+{% load render_table from django_tables2 %}
+{% block content %}
+
+<script type="text/javascript">
+{% if status_msg == "Success" %}
+	$('.result_msg').html('<b style="font-size: 22px; color: green;">{{status_msg}}</b>');
+{% else %}
+	$('.result_msg').html('<b style="font-size: 22px; color: red;">{{status_msg}}</b>');
+{% endif %}
+
+$("#verify_status").html({{networkVerificationDetails.status|yesno:"'Successful','Failed','Not Available'"|safe|escape}});
+$("#last_verify").html("Last Verification: " + {{networkVerificationDetails.last_verification|safe|escape|default:"'Not Available'"}});
+</script>
+
+{% for msgContent, status in msgList.items %}
+	{% if status %}
+		<b style="font-size: 12px; color: green;">{{msgContent}}</b><br>
+	{% else %}
+		<b style="font-size: 12px; color: red;">{{msgContent}}</b><br>
+	{% endif %}
+{% endfor %}
+
+{% endblock %}

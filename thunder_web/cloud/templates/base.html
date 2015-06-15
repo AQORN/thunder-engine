@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>{% block title %}{% endblock %}</title>
+<!-- Bootstrap Core CSS -->
+<link href="/site_media/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link href="/site_media/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/site_media/dist/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="/site_media/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- Timeline CSS -->
+<link href="/site_media/dist/css/timeline.css" rel="stylesheet">
+<!-- Morris Charts CSS -->
+<link href="/site_media/bower_components/morrisjs/morris.css" rel="stylesheet">
+<link href="/site_media/dist/css/style.css" rel="stylesheet">
+<script src="/site_media/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/site_media/bower_components/jquery/dist/jquery-ui.js"></script>
+<script src="/site_media/js/custom.js"></script>
+<script type="text/javascript">
+    var base_url = "{{ base_url }}"
+    var system_space = "{{system_space}}"
+    width = $(window).width();
+    contentWidth = width - 211;
+    contentHeight = $(window).height();
+
+    //Setting the width of content area
+    $(document).ready(function() {
+        //Setting the width of content area
+        $(".contentWidth").css("width", contentWidth)
+
+        //Setting the width of content area
+        $(window).resize(function() {
+            width = $(window).width();
+            contentWidth = width - 210;
+            $(".contentWidth").css("width", contentWidth);
+            $("body").css("border-right", "1px solid #f3f6f9");
+            
+        });
+    });
+</script>
+{% block extra_js%}{% endblock %}
+</head>
+<body>
+    <div style="display: table;">
+        <div class="leftmenu">
+            <div class="width-100">
+                <a href="{{ base_url }}"> 
+                <img src="/site_media/images/logo-container.png" class="logo" /></a>
+            </div>
+            <div class="width-100" id="nodeData">
+                <div class="col-sm-6 rm-pad-node">
+                    <div class="col-sm-12 rm-pad-node">NODES FOUND</div>
+                    <div class="col-sm-12 node">{{node_found}}</div>
+                </div>
+                <div class="col-sm-6 rm-pad-node">
+                    <div class="col-sm-12 rm-pad-node">NODES USED</div>
+                    <div class="col-sm-12 node">{{node_used}}</div>
+                </div>
+            </div>
+            {% include "menu.html" %}
+        </div>
+        <div class="contentWidth float-left">
+            <div class="" id="top-nav-bar">
+                <div class="dp-menu width-40" id="cld-mgmt-portal">CLOUD MANAGEMENT PORTAL</div>
+                <div class="dp-menu menu_active width-40" id="cld">
+                    <a href="{{ base_url }}">CLOUDS</a>
+                </div>
+                <div class="dp-menu width-10" id="alert-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown dp-menu-li">
+                            <a class="dropdown-toggle" id="alert-notify" data-toggle="dropdown" href="#"> 
+                            {% if hasNewAlerts %} 
+                                <img src="/site_media/images/icon-bell.png">
+                            {% else %} 
+                                <img src="/site_media/images/no-icon-bell.png">
+                            {% endif %}
+                            </a>
+                            <ul class="dropdown-menu pull-right alert-dropdown dp-menu-ul" id="alert-id">
+                                {% include "misc/thunder_alert.html" %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dp-menu width-10" id="tasks-menu">
+                    <ul  class="nav navbar-nav navbar-top-links navbar-right">
+                        <li class="dropdown dp-menu-li">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+                            <img src="/site_media/images/menu-settings.png">
+                        </a>
+                        <ul class="dropdown-menu pull-right dropdown-tasks dp-menu-ul" id="task-list">
+                            <li id="thunder-control">THUNDER CONTROL</li>
+                            <li class="divider"></li>
+                            <!-- Displays only if the user have privilege -->
+                            {% if 'feature_control' in request.session.cloudAccessMapData.featureAccess %}
+                                <li>
+                                <a href="#" id="roles"> 
+                                    <b>User Access Control</b>
+                                    <p>Manage users and what they are allowed to do within Thunder.</p>
+                                </a>
+                                </li> 
+                            {% endif %}
+                            <!-- Displays only if the user have privilege -->
+                            {% if 'addon_control' in request.session.cloudAccessMapData.featureAccess %}
+                                <li>
+                                    <a href="#" id="manage-add-ons"><b>Manage Add-ons</b>
+                                    <p>Leverage custom drives not included with Thunder by default.</p>
+                                    </a>
+                                </li> 
+                            {% endif %}
+                            <li>
+                            <a href="#" id="logs"> 
+                                <b>Log Viewer</b>
+                                <p>View specific logs for Thunder or a  Thunder-deployed cloud.</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="support-options"> 
+                                <b>Support Options</b>
+                                <p>Trust AQORN to support mission critical worklandds or obtain advice from other Thunder users.</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://docs.aqorn.com/thunder/" target="_blank" id="documentation">
+                                    <b>Documentation</b>
+                                    <p>For Thunder documentation, visit:</p>
+                                    <p class="site-link">http://docs.aqorn.com/thunder/</p>
+                                </a> 
+                            </li>
+                            <li>
+                                <a href="{{base_url}}logout" id="logout">
+                                <p>
+                                    <b class="orange"><i class="glyphicon glyphicon-log-out"></i>Logout</b>
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 cont content-area">
+                {% if cloud_id %}
+                    <div class="row" id="breadcrumb">
+                    {% load django_bootstrap_breadcrumbs %} 
+                        {% block breadcrumbs%} 
+                            {% clear_breadcrumbs %} 
+                        {% endblock %} 
+                        {% block breadcrumb %} 
+                            {% render_breadcrumbs %} 
+                        {% endblock%}
+                    </div>
+                {% endif %}
+                <div class="row" id="thunder-container">
+                    <!--  to show the status -->
+                    <div class="row">
+                        <div class="status">
+                            <div class="successStatus" style="display: none;">
+                                <img width="375" height="46" src="{{ base_url }}site_media/images/clear.cache.gif" class="statusOk">
+                            </div>
+                            <div class="errorStatus" style="display: none;">
+                                <img width="375" height="46" src="{{ base_url }}site_media/images/clear.cache.gif" class="statusError">
+                            </div>
+                            <div class="statusText" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <!-- Heading display - Start -->
+                    <div id="content-heading">
+                        <h3>{% block head %}{% endblock %}</h3>
+                    </div>
+                    <!-- Heading display - End -->
+                    <!-- Messaging -->
+                    {% if messages %}
+                        <div class="row">
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <!-- Messaging end here -->
+                    <!-- Content container - Start -->
+                    {% block content %}{% endblock %}
+                    <!-- Content container - End -->
+                </div>
+                <!-- Footer section - Start -->
+                <div class="row" id="footer">
+                    <div class="col-sm-12" id="footer-column2">
+                        <img src="/site_media/images/Thunder_Logo_Icon.png" /><br>
+                        <p>Copyright@2013-2015&nbsp;<strong>Thunder</strong>.
+                            <br>All rights reserved.
+                        </p>
+                    </div>
+                </div>
+                <!-- Footer section - End -->
+            </div>
+        </div>
+    </div>
+    <!-- Main container section - End -->
+    <!-- Setting csrf token - Start -->
+    {% csrf_token %}
+    <script type="text/javascript">
+        window.csrf_val = $("input[name='csrfmiddlewaretoken']").val();
+    </script>
+    <!-- Setting csrf token - End -->
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/site_media/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/site_media/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/site_media/dist/js/sb-admin-2.js"></script>
+    <!-- Script for the pop up modal form  -->
+    <script>
+                    
+    </script>
+    <!-- Modal form template -->
+    <div id="form-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">{% block modalTitle%}{% endblock %}</h4>
+                </div>
+                <div id="form-modal-body" class="modal-body"></div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Modal form template -->
+    <div id="form-modal-update" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div id="thunder-update-modal" class="modal-body"></div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- To display the popup container -->
+    <div id="alert-view"></div>
+    <div id="alert_log_details"></div>
+    <div id="black_overlay"></div>
+</body>
+</html>

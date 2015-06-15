@@ -1,0 +1,216 @@
+{% load render_table from django_tables2 %} {% block content %}
+<script>
+    //To update the drag and drop , interface section
+    $( document ).ready(function() {
+        var count = 0;
+        $(".connectedSortable ").sortable({
+            connectWith : ".connectedSortable",
+            items : "li.nicData",
+            update : function(event, ui) {
+                targetId = event.target.id;
+                ItemId = ui.item[0].id;
+                if (count == 1) {
+                    $.ajax({
+                        beforeSend : function(xhr) {
+                            xhr.setRequestHeader('X-CSRFToken', window.csrf_val);
+                        },
+                        data : {
+                            'ItemId' : ItemId,
+                            'targetId' : targetId,
+                            'count' : count,
+                            'nodeId' : $("#nodeIdConf").val()
+                        },
+                        type : 'POST',
+                        url : base_url + 'updateNetworkCard/',
+                        success: function (xhr, ajaxOptions, thrownError) {
+
+                            // Assign the html content and display message
+                            $('#form-modal-body').html();
+                            $('#form-modal-body').html(xhr);
+                            
+                            // Checking the response
+                            if ( $(xhr).find('.has-error').length > 0 ) {
+                                errorMsg('Network mapping failed.');
+                            }
+                            else {
+                                successMsg('Network mapped successfully.');
+                            }
+                         },
+                         error: function (xhr, ajaxOptions, thrownError) {
+                             errorMsg('Network mapping failed.');
+                         }
+                    });
+                }
+                count = count + 1;
+            }
+        }).disableSelection();
+    });
+    
+    //To make the system drive space readonly
+    $(document).ready(function() {
+        $(".disk-row2 input").attr('hidden','true');
+    });
+</script>
+<div id="config-node">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="status" style=" left: 62%; display:none;">
+                <div class="successStatus"  >
+                    <img width="375" height="46" src="{{ base_url }}site_media/images/clear.cache.gif" class="statusOk">
+                </div>
+                <div class="errorStatus" style="display: none;">
+                    <img width="375" height="46" src="{{ base_url }}site_media/images/clear.cache.gif" class="statusError">
+                </div>
+                <div class="statusText" style="display: none;"></div>
+            </div>
+        </div>
+        {% if networkError %}
+            <script type="text/javascript">
+                setTimeout(function(){
+                    errorMsg("Error in Network Interface. Please correct it.");
+                  }, 1000);
+            </script>
+        {% endif %}
+    </div>
+    <div class="row vertical-space config-node">
+        <div class="col-sm-5 col-xs-5 conf-node bak-2-col">
+            <form method="post" action="../nodeConfig/0" id="disk-Form">
+                <input type="hidden" name="nodeIdConf" id="nodeIdConf" value="{{nodeId}}">
+                {% if showNicAssignError %}
+                    <input type="hidden" name="nicErr" id="nicErr" value="" class="has-error">
+                {% endif %}
+                {{ diskDriveForms.management_form }}
+                <div class="col-xs-12 sub-heading"><b>DRIVE PARTITIONING:</b></div>
+                <div class="col-sm-12 col-xs-12 rm-pad-value scroll-bar disk-drives">
+                {% for diskDriveForm in diskDriveForms %}
+                    {% if forloop.counter == 1 %}
+                        <div class="row vertical-space rm-pad-value calc-disk">
+                            <div class="col-sm-3 drive-name">
+                                <img src="{{base_url}}site_media/images/sda.png">{{diskDriveForm.name.value}}
+                                <span class="total-space">{{diskDriveForm.total_space.value}}&nbsp;GB</span>
+                            </div>
+                            <div class="col-sm-9 rm-pad-value">
+                                <div class="row rm-pad-value disk-row">
+                                    <div class="col-xs-3 drive-label">
+                                        {{diskDriveForm.system_space.label_tag}}
+                                    </div>
+                                    <div class="col-xs-4 system_space-input">
+                                        {{diskDriveForm.system_space}}{{diskDriveForm.system_space.errors}}
+                                    </div>
+                                    <div class="col-xs-1 label-grey">GB</div>
+                                    <div class="col-xs-1 txt-blue system-space-config">All</div>
+                                </div>
+                                <div class="row rm-pad-value disk-row">
+                                    <div class="col-xs-3  drive-label">
+                                        {{diskDriveForm.storage_space.label_tag}}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{diskDriveForm.storage_space}}{{diskDriveForm.storage_space.errors}}
+                                        {{diskDriveForm.total_space}}
+                                    </div>
+                                    <div class="col-xs-1 label-grey">GB</div>
+                                    <div class="col-xs-1 txt-blue data-space-config">All</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row vertical-space rm-pad-value calc-disk">
+                            <div class="col-sm-3 drive-name2">
+                                <img src="{{base_url}}site_media/images/sdb.png">{{diskDriveForm.name.value}}
+                                <span class="total-space">{{diskDriveForm.total_space.value}}&nbsp;GB</span>
+                            </div>
+                            <div class="col-sm-9 rm-pad-value">
+                                <div class="row rm-pad-value disk-row2">
+                                    {{diskDriveForm.system_space}}
+                                </div>
+                                <div class="row rm-pad-value disk-row">
+                                    <div class="col-xs-3  drive-label">
+                                        {{diskDriveForm.storage_space.label_tag}}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        {{diskDriveForm.storage_space}}{{diskDriveForm.storage_space.errors}}
+                                        {{diskDriveForm.total_space}}
+                                    </div>
+                                    <div class="col-xs-1 label-grey">GB</div>
+                                    <div class="col-xs-1 txt-blue data-space-config2">All</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {{diskDriveForm.diskId}}
+                    {{diskDriveForm.name}}
+                {% endfor%}
+                </div>
+                <div class="col-xs-12">
+                    <button value="APPLY" class="btn btn-info active" onclick="chkDiskField();" id="disk-drive" type="button">APPLY</button>
+                </div>
+                 {% csrf_token %}
+            </form>
+        </div> 
+        <div class="col-sm-7 col-xs-7 interface">
+        <div class="  sub-heading"><b>NETWORK INTERFACES:</b></div>
+            <div class="vertical-space interface-list">
+            {% for networkInterface in networkInterfaces %}
+                <div class="row full-border-x rm-pad-value">
+                    <div class="col-sm-2 eth-label">
+                        <img alt="" src="{{base_url}}site_media/images/eth0.png" class="vertical-space">
+                    </div>
+                    <div class="bdr-x col-sm-10 rm-pad-value eth-value">
+                        <ul id="sortable{{networkInterface.id}}" class="connectedSortable">
+                            {% for mappingDetail in mappingDetails%} 
+                                {% if mappingDetail.nic_id == networkInterface.id %}
+                                <li id="{{mappingDetail.id}}" {% if mappingDetail.network_type == 'A'%} class="admins" {% else %} class="ui-state-default nicData" {% endif %}>
+                                    {% if mappingDetail.network_type == 'A'%}
+                                    	<div class="mapping"><div class="mapping_net">Admin</div></div> 
+                                    {% elif mappingDetail.network_type == 'P'%}
+                                    	<div class="mapping">
+                                    		<div class="mapping_net">Public</div>
+                                    		<div class="mapping_vlan">VLAN:
+		                                    	{% if vlanTagList.P %}
+		                                    		{{vlanTagList.P}}
+		                                    	{% else %}
+		                                    		None
+		                                    	{% endif %}
+		                                    </div>
+                                    	</div> 
+                                    {% elif mappingDetail.network_type == 'M'%}
+                                    	<div class="mapping">
+                                    		<div class="mapping_net">Management</div>
+                                    		<div class="mapping_vlan">VLAN:
+		                                    	{% if vlanTagList.M %}
+		                                    		{{vlanTagList.M}}
+		                                    	{% else %}
+		                                    		None
+		                                    	{% endif %}
+		                                    </div>
+                                    	</div> 
+                                    {% else %}
+                                    	<div class="mapping">
+                                    		<div class="mapping_net">Storage</div>
+                                    		<div class="mapping_vlan">VLAN:
+		                                    	{% if vlanTagList.S %}
+		                                    		{{vlanTagList.S}}
+		                                    	{% else %}
+		                                    		None
+		                                    	{% endif %}
+		                                    </div>
+                                    	</div>
+									{% endif %}
+                                </li> 
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row label-grey rm-pad-value">
+                    <div class="col-sm-2 interface-data">{{networkInterface.name}}</div>
+                    <div class="col-sm-4 interface-data rm-pad-value">{{networkInterface.mac_address}}</div>
+                    <div class="col-sm-3 interface-data">{{networkInterface.model_name}}</div>
+                    <div class="col-sm-4 interface-data">{{networkInterface.ip_address}}</div>
+                </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

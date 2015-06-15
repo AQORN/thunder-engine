@@ -1,0 +1,23 @@
+{% load render_table from django_tables2 %}
+{% block content %}
+<div id="addon-list">
+    <div class="row vertical-space">
+        <div class="col-sm-12 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
+                <div id="addon_content">
+                    <b>What is an Add-ons?</b>
+                    <p>Thunder add-ons allow custom capabilities that may not be
+                        included with Thunder by default.</p>
+                    <br> <b>Are there any limitations?</b>
+                    <p>Thunder supports storage add-ons which can only be only be consumed
+                        by clouds created after the add-on was uploaded.</p>
+                    <br> <b>How do I use an active plugin?</b>
+                    <p>Thunder add-ons are available immediately following upload 
+                        and consumable by all deployments.</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

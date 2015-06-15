@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Add Recipe{% endblock %}
+{% block head %}Add Recipe{% endblock %}
+{% block content %}
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_table }}
+        
+        <input type="submit" class="btn btn-primary btn-sm" value="Add Project" />  
+    </form>
+    
+    <script> 
+	$( document ).ready(function() { 
+		$("#id_Project").change(function(){
+		   $.getJSON("/feedsRecipe/"+$(this).val()+"/", function(j) {
+			    var options = '<option value="">---------- </option>';
+			    for (var i = 0; i < j.length; i++) {
+	   			    options += '<option value="' + parseInt(j[i].pk) + '">' + j[i].fields['recipe_name'] + '</option>';
+	   			}
+	   		    $("#id_recipe").html(options);
+	   		    $("#id_recipe option:first").attr('selected', 'selected');
+	   		    $("#id_recipe").attr('disabled', false);
+	   	   })
+	     $("#id_Project").attr('selected', 'selected');
+	   })
+	})
+	</script>
+{% endblock %}

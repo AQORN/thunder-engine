@@ -1,0 +1,29 @@
+<h4 style="padding-left:10px;">Alerts</h4>
+{% for alert in alerts %}
+<li>
+	<a href="#">
+    	<div>
+        	<p id={{alert.id}} class="view_alert_log">
+            	<strong>{{alert.log_title}} - 
+            		{% if alert.job_status == 'F' %}
+		   				<span class="error">Failed</span>
+			   		{% elif  alert.job_status == 'N' %}
+			   			New
+			   		{% elif  alert.job_status == 'S' %}
+			   			<span class="success">Success</span>			   		
+			   		{% else %}
+			   			<span class="warning">In progress</span>
+			   		{% endif %}
+            	</strong>                
+             </p>
+		</div>
+	</a>
+ </li>
+ <li class="divider"></li>
+ {% endfor %}
+ <li>
+     <a id="all-alert" class="text-center" href="{{baseUrl}}/cloud/alert">
+         <strong>See All Alerts</strong>
+         <i class="fa fa-angle-right"></i>
+     </a>
+ </li>

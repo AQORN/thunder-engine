@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thunder</title>
+<link href="/site_media/login/style.css" rel="stylesheet">
+<link rel="stylesheet"
+    href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div id="logo-container">
+            <span id="logo"></span>
+        </div>
+        <div id="login-container">
+            {% block content %}
+                <div id="login">
+                    <form method="post" action=".">
+                        <fieldset class="clearfix">
+                            <p class="header">Login</p>
+                            <p>
+                                <span class="fontawesome-user"></span>{{form.username}}
+                            </p>
+                            <p>
+                                <span class="fontawesome-lock"></span>{{form.password}}
+                            </p>
+                            <p>
+                                <input type="submit" value="LOGIN">
+                                <input type="hidden" name="next" value="/" />
+                            </p>
+                            {% csrf_token %}
+                        </fieldset>
+                    </form>
+                    <p>
+                        <a href="{{ base_url }}reset">I forgot My password</a> 
+                        <span class="fontawesome-arrow-right"></span>
+                    </p>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

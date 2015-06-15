@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thunder</title>
+<link href="/site_media/login/style.css" rel="stylesheet">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <div class="container-top">
+        <div class="top-left">
+        {% for thunderVersion in thunderVersions%} 
+            <div class="row">Version: {{thunderVersion.version}}</div>
+        {%endfor%}
+        {% for details in thunderAccess%}
+            <div class="row">Thunder GUI:{{details.ip_address}} </div>
+        {%endfor%}
+        </div>
+        <div class="top-right">
+            {% for pxeNetwork in pxeNetworks%}
+                <div class="row">
+                    <div class="span-class">Pxe Network Interface</div>{{pxeNetwork.nic_name}}
+                </div>
+                <div class="row">
+                    <div class="span-class">Start</div>{{pxeNetwork.pool_start}}
+                </div>
+                <div class="row">
+                    <div class="span-class">End</div>{{pxeNetwork.pool_end}}
+                </div>
+                <div class="row">
+                    <div class="span-class">Subnet Mask</div>{{pxeNetwork.subnet_mask}}
+                </div>
+                <div class="row">
+                    <div class="span-class">Gateway</div>{{pxeNetwork.gateway}}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <div id="logo-container">
+            <span id="logo"></span>
+        </div>
+        <div id="login-container">
+            {% block content %}
+                <div id="login">
+                    <form method="post" action=".">
+                        <fieldset class="clearfix">
+                            <p class="header">Login</p>
+                            <p>
+                                <span class="fontawesome-user"></span>{{form.username}}
+                            </p>
+                            <p>
+                                <span class="fontawesome-lock"></span>{{form.password}}
+                            </p>
+                            <p>
+                                <input type="submit" value="LOGIN">
+                                <input type="hidden" name="next" value="/" />
+                            </p>
+                            {% csrf_token %}
+                        </fieldset>
+                    </form>
+                    <p class="forgot-pass">
+                        <a href="{{ base_url }}reset" class="tooltip">I forgot My password 
+                            {% if emailSet %}
+                                <span>
+                                    <img alt="Tooltip" src="/site_media/login/callout_black.gif" class="callout">
+                                    <strong>Update DNS to enable password recovery</strong>
+                                </span>
+                            {% endif %}
+                        </a> 
+                        <span class="fontawesome-arrow-right"></span>
+                    </p>
+                </div>
+            {% endblock %}
+        </div>
+        <!-- end login -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="row">
+	<script type="text/javascript" src={{base_url}}site_media/js/tabinate.js></script> 
+    <div id="tab_navigation" class="tab-window">
+	<nav>
+    	<ul class="roleUl">
+        {% for tab in tabs %}
+            <li class="tabViews" >
+                <a href="#{{ tab.tab_id}}" {%if tab.tab_rel %}rel="{{ tab.tab_rel }}"{% endif %}>
+                {% if tab.tab_counter %}<em>{{ tab.tab_counter }}</em>{% endif %}
+                {{ tab.tab_label }}
+                </a>
+            </li>			                   
+        {% endfor %}
+    	</ul>
+	</nav>
+	{% for tab in tabs %}
+		<div id="{{ tab.tab_id}}" class="tab">    		 
+    		{% include tab.template_name %}
+  		</div>
+	{% endfor %}		    
+	</div>
+</div>
+<script>
+$('#tab_navigation').tabinate({
+    activeLinkClass : 'active',
+    tabClass : 'tab',
+    startTab : 0
+}); 
+</script> 

@@ -1,0 +1,4 @@
+[gerrit]
+host=reviews.sl.attcompute.com
+port=29418
+project=cookbook-statsd.git

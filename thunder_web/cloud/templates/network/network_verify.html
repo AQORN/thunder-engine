@@ -1,0 +1,42 @@
+{% load render_table from django_tables2 %} {% block content %}
+<div id="verify-network">
+    <div class="row vertical-space">
+        <div class="col-sm-6 col-xs-6 bak-2-col">
+            <b>What is an Add-on?</b>
+            <p>Networking is often the most confusing element with cloud deployments. This tool helps identify potential problems to ensure your cloud 'just works'</p>
+            <br> <b>What's being verified?</b>
+            <p>Thunder tests node connectivity using the settings applied to this particular cloud.</p>
+            <br>
+            <b>How does it work?</b>
+            <p>Thunder checks access between nodes using the network and VLAN definitions by sending packets back and forth between nodes and the Thunder management node.</p>
+        </div>
+        <div class="col-sm-6 col-xs-6 pad-left">
+            <div class="row">
+                <div class="col-sm-5 col-xs-5">
+                    <button class="btn btn-info active" id="verify_network" type="submit">Verify Networks</button>
+                    <script type="text/javascript">
+						$(document).ready(function() {
+							$('#verify_network').trigger('click');
+						})
+					</script>
+                </div>
+                <div class="col-sm-1 col-xs-1" id="load-image">
+                    <img src="{{ base_url }}site_media/images/loading.gif">
+                </div>
+                <div class="col-sm-6 col-xs-6 text-right">
+                    <b>Result:</b><span class="result_msg">Success</span>
+                </div>
+            </div>
+            <br>
+            <div class="row message-padding">
+                <div class="well well-sm">
+                    <b>Messages</b>
+                </div>
+                <div id="check_conection_msg">
+                    <p>No Messages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

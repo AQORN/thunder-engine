@@ -1,0 +1,56 @@
+{% extends "thunderadmin/base.html" %} 
+{% block title %}Configure{%endblock %} 
+{% block head %}Configuration Options{% endblock %}
+{% block backimg %}<img src="{{ base_url }}site_media/thunderadmin/back.png">{% endblock%}
+{% block toplink %}<a class="yellow" href="{{ base_url }}logout"> Back</a>{% endblock%} 
+{% block content %}
+    <div id="configure">
+        <form method="post" action="#">
+            {% for field in forms%} 
+                <div class="row">{{field}}</div>
+            {% endfor %}
+            <div class="row">
+                <input type="submit" value="Continue" class="btn btn-info buttons" />
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
+{% block settings %}
+    <div class="access-column">
+        {% for  data in datas.pxeNetworks%}
+            <div class="row">
+                <div class="col-sm-12 bold group">SETTINGS</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 group yellow">Version {{data.thunder_version}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 group"><span class="bold">Thunder GUI</span><br><span class="yellow">{{data.thunder_access}}</span></div>
+            </div>
+            <div class="row ">
+                <div class="col-sm-12 bold">Current PXE Network Settings</div>
+            </div>
+            <div class="row yellow">
+                <div class="col-sm-4">Interface</div>
+                <div class="col-sm-6">{{data.nic_name}}</div>
+            </div>
+            <div class="row yellow">
+                <div class="col-sm-4">Start</div>
+                <div class="col-sm-6">{{data.pool_start}}</div>
+            </div>
+            <div class="row yellow">
+                <div class="col-sm-4">End</div>
+                <div class="col-sm-6">{{data.pool_end}}</div>
+            </div>
+            <div class="row yellow">
+                <div class="col-sm-4">Subnet Mask</div>
+                <div class="col-sm-6">{{data.subnet_mask}}</div>
+            </div>
+            <div class="row group yellow">
+                <div class="col-sm-4">Gateway</div>
+                <div class="col-sm-6">{{data.gateway}}</div>
+            </div>
+        {%endfor%}
+    </div>
+{% endblock%} 

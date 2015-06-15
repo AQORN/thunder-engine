@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Thunder{% endblock %}
+{% block head %}Page not Found{% endblock %}
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {% breadcrumb "Clouds" "/" %}
+    {% breadcrumb node_name|title "" %}
+    {% breadcrumb "Page not Found" "" %}
+{% endblock %}

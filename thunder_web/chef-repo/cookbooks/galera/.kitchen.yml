@@ -1,0 +1,36 @@
+---
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: latest
+
+driver:
+  name: vagrant
+  customize:
+    memory: 512
+
+platforms:
+  - name: centos-6.4
+  - name: ubuntu-12.04
+
+suites:
+- name: default
+  run_list:
+    - recipe[ktc-testing]
+    - recipe[etcd::compile_time]
+    - recipe[galera-test]
+  attributes:
+    etcd:
+      args: '-c 127.0.0.1:4001 -s 127.0.0.1:7001 -f'
+      servers:
+        - 127.0.0.1
+    ha_disabled: true
+    mysql:
+      allow_remote_root: true
+      root_network_acl: '%'
+      tunable:
+        buffer_pool_size: 128M
+    openstack:
+      developer_mode: true
+    vips:
+      tags:
+        mysql: 10.0.2.50

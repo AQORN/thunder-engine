@@ -1,0 +1,39 @@
+{% extends "thunderadmin/base.html" %}
+{% block title %}Final Installation Progress{% endblock %} 
+{% block head %}Final Installation Progress{% endblock %}
+{% block content %}
+<script>
+$(document).ready(function() {  
+    
+    // Triggers the installation request
+    timeout1 = setTimeout(function() {
+        $.ajax({
+            type: 'GET',
+            url: "/admin/completeInstallation",
+            success: function (xhr, ajaxOptions, thrownError) {
+                status = xhr.status;
+                
+                // Executes if response is success
+                if (status == 'true') {
+                    timeout = setTimeout(function() {
+                        $(location).attr('href', xhr.url);
+                    }, 5000);
+                } else {
+                    $("#err_msg_container").html(xhr.errMsg);
+                    $("#retry_install").show();                    
+                }
+            }
+        });
+    }, 20000);
+});
+</script>
+<div id="final_progress_status">
+    Please wait while the installation is in progress. You will be shortly redirected to the thunder portal.
+</div>
+    <div id="retry_install">
+        <p id="err_msg_container"></p>
+        <p id="reload_link">
+            <a href="#" onclick="location.reload(true)" class="yellow">Try Again</a>
+        </p>
+    </div>
+{% endblock %}

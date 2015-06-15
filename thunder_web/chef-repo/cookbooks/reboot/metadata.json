@@ -1,0 +1,39 @@
+{
+  "name": "reboot",
+  "description": "Installs/Configures reboot",
+  "long_description": "Description\n===========\nProvides a very simple way to trigger a reboot at the end of a chef run fron a cookbook run using chef_handler.\n\nAttributes\n==========\n`node[:reboot][:auto_reboot]` defaults to 0. Override or set to 1 if you want a node to auto reboot when the recipe is included.\n\nUsage\n=====\nAdd `recipe[reboot]` to your runlist. Set `node[:reboot][:auto_reboot] = 1` to trigger a reboot at the end of the run.\n",
+  "maintainer": "Paul Thomas",
+  "maintainer_email": "paul@paulthomas.eu",
+  "license": "Apache 2.0",
+  "platforms": {
+
+  },
+  "dependencies": {
+    "chef_handler": ">= 0.0.0"
+  },
+  "recommendations": {
+
+  },
+  "suggestions": {
+
+  },
+  "conflicting": {
+
+  },
+  "providing": {
+
+  },
+  "replacing": {
+
+  },
+  "attributes": {
+
+  },
+  "groupings": {
+
+  },
+  "recipes": {
+
+  },
+  "version": "1.0.0"
+}

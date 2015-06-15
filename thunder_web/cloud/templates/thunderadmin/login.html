@@ -1,0 +1,45 @@
+{% extends "thunderadmin/base.html" %}
+{% block title%}AQORN Thunder Software Demonstration{%endblock%} 
+{% block head %}Login{% endblock %}
+{%block content%}
+<style>
+    .vertical-space {
+        margin-top: 16%;
+    }
+</style>
+<form method="post" action="#">
+    <div class="form-group">
+        <p>
+            <span class="fontawesome-user"></span>
+            <input id="id_username" type="text" name="username" maxlength="254">
+        </p>
+    </div>
+    <div class="form-group">
+        <p>
+            <span class="fontawesome-lock"></span>
+            <input id="id_password" type="password" name="password">
+        </p>
+    </div>
+    <input type="hidden" name="next" value="/" />
+    
+    <div class="form-group login_err">
+        <input type="submit" value="LOGIN" class="btn btn-info " />
+        {% if error_msg %}
+            {{error_msg}}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <p class="forgot-pass">
+            <a href="{{ base_url }}reset" class="tooltips">I forgot My password 
+                {% if emailSet %} 
+                    <span> 
+                        <img alt="Tooltip" src="/site_media/thunderadmin/callout_black.gif" class="callout"> 
+                        <strong>Update DNS to enable password recovery</strong>
+                    </span> 
+                {% endif %}
+            </a>
+        </p>
+        {% csrf_token %}
+    </div>
+</form>
+{% endblock %}

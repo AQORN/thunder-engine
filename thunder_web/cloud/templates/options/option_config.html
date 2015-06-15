@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% load projecttags %} 
+{% block title%}Options{% endblock %} 
+{% block head %}Options{% endblock %} 
+{% block menutab %} 
+    {% include "menu.html" %} 
+{% endblock %} 
+{% load django_bootstrap_breadcrumbs %} 
+{% block breadcrumbs %} 
+    {% breadcrumb "Clouds" "/" %} 
+    {% breadcrumb node_name|title "" %} 
+    {% breadcrumb "Option" ""%} 
+{% endblock %} 
+{% block content %}
+<form action="#" method="post">
+    <div style="margin-bottom: 16px;" class="col-sm-12 col-xs-12 panel-white">
+        <div class="row">
+            <div class="col-sm-12 blk-title-box">
+                <h4>Configuaration Summary</h4>
+            </div>
+            <div class="col-sm-4 div-border">
+                <b>Mode</b><span class="hori-space">High  Availability</span><br> <br> <b>Hypervisor</b>
+                <span class="hori-space">KVM</span><br> <br> <b>Network</b>
+                <span class="hori-space">Neutron GRE Tunneling</span><br>
+                <br>
+            </div>
+            <div class="col-sm-4 div-border">
+                <b>Object Storage</b><span class="hori-space">Swift</span><br>
+                <br> <b>Glance Back-end</b><span class="hori-space">Swift</span><br>
+                <br> <b>Cinder Back-end</b><span class="hori-space">Local Disk</span><br> <br>
+            </div>
+            <div class="col-sm-4 div-border">
+                <b>Message Queue</b><span class="hori-space">RabbitMQ</span><br>
+                <br> <b>Database</b><span class="hori-space">MySQL</span><br>
+                <br> <b>Monitoring</b><span class="hori-space">Zabbix</span><br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- Displays only if the user have privilege -->
+    {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+        <div class="col-sm-12 vertical-space">
+        <button value="Save Changes" class="btn btn-info active" type="submit">
+            <img src="../site_media/images/save_Icon.png">Update Options
+        </button>
+        </div>
+    {% endif %}
+    
+    {% for categoryList in categoryLists %}
+    <div class="col-sm-6 panel-white pw-col6 optiongp">
+        <div class="blk-title-box row">
+            <h4>{{categoryList|replace:"/_/ "|title }}</h4>
+        </div>
+        {% for field in forms %} 
+            {% if field.help_text|title == categoryList|title %}
+                <div class="col-xs-12 vertical-space">
+                    {% if field|is_checkbox %}
+                        <div class="col-xs-1">{{field}}</div>
+                        <div class="col-xs-9">{{field.label_tag}}</div>
+                    {% else %}
+                        <div class="col-xs-4">{{field.label_tag}}</div>
+                        <div class="col-xs-7">{{field}}{{field.errors}} 
+                        {% if 'Default Password' in  field.label_tag  %} 
+                            <i class="glyphicon glyphicon-eye-close form-control-feedback show-password"></i>
+                        {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %} 
+        {% endfor %}
+    </div>
+    {% endfor %} 
+    {% csrf_token %}
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "thunderadmin/home.html" %}
+{% block title %}Roles {% endblock %}
+{% block head %}Roles{% endblock %}
+{% block content %}
+ <div id="login">
+    {% for thunderVersion in thunderVersions%}
+        AQORN THUNDER Version: {{thunderVersion.version}}
+    {% endfor%}
+    <br/><br/>PXE NETWORKS<br/>
+    {% for pxeNetwork in pxeNetworks%}
+        Interface: {{pxeNetwork.nic_name}}<br>
+        Start: {{pxeNetwork.pool_start}}<br>
+        End: {{pxeNetwork.pool_end}}<br>
+        Subnet Mask: {{pxeNetwork.subnet_mask}}<br>
+        Gateway: {{pxeNetwork.gateway}}<br>
+    {% endfor%}
+    <br/><br/>THUNDER GUI :<br/>
+    {% for thunderAcces in thunderAccess %}
+        {{thunderAcces.ip_address}}
+    {% endfor%}
+    {{forms}}
+</div>
+<a href="http://172.17.4.61:8000/admin/config/">Configure</a>
+{% endblock %}

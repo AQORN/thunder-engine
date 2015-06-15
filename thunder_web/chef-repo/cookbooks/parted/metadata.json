@@ -1,0 +1,33 @@
+{
+  "name": "parted",
+  "version": "2.1.2",
+  "description": "Installs/Configures parted",
+  "long_description": "[![Build Status](http://img.shields.io/travis/retr0h/cookbook-parted.svg?style=flat-square)](https://travis-ci.org/retr0h/cookbook-parted)\n[![Dependency Status](http://img.shields.io/gemnasium/retr0h/cookbook-parted.svg?style=flat-square)](https://gemnasium.com/retr0h/cookbook-parted)\n[![Chef](http://img.shields.io/cookbook/v/parted.svg?style=flat-square)](https://supermarket.getchef.com/cookbooks/parted)\n\nDescription\n============\n\nInstalls/Configures parted\n\nRequirements\n============\n\n* Chef 11\n\nAttributes\n==========\n\nUsage\n=====\n\n```json\n\"run_list\": [\n    \"recipe[parted]\"\n]\n```\n\nUse parted to create an gpt disk label on /dev/sdb\n\n```ruby\nparted_disk \"/dev/sdb\" do\n  label_type \"gpt\"\n\n  action :mklabel\nend\n```\n\nUse parted to make a primary ext4 partition on /dev/sdb\n\n```ruby\nparted_disk \"/dev/sdb\" do\n  part_type   \"primary\" # logical or extended\n  file_system \"ext4\"\n\n  action :mkpart\nend\n```\n\nMake an ext4 file system on /dev/sdb1\n\n```ruby\nparted_disk \"/dev/sdb1\" do\n  file_system \"ext4\"\n\n  action :mkfs\nend\n```\n\nMake an ext4 file system on /dev/sdb1 with a size of 800GB (default in MB)\n\n```ruby\nparted_disk \"/dev/sdb1\" do\n  file_system \"ext4\"\n  part_start  \"1\"\n  part_end    \"819200\"\n\n  action :mkfs\nend\n```\n\nSet the raid flag on file system on /dev/sdb1\n```ruby\nparted_disk \"/dev/sdb1\" do\n  flag_name \"raid\"\n  action: setflag\nend\n```\n\ndefault\n-------\n\nInstalls/Configures parted\n\nTesting\n=======\n\n    $ rake\n\nLicense and Author\n==================\n\nAuthor:: John Dewey (<john@dewey.ws>)\n\nCopyright 2012-2014, John Dewey\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "maintainer": "John Dewey",
+  "maintainer_email": "john@dewey.ws",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "parted": "Installs/Configures parted"
+  }
+}

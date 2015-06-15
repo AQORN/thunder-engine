@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% load projecttags %} 
+{% block title %}Cloud Configuration {% endblock %} 
+{% block head %}Cloud Configuration{%endblock %} 
+{% load django_bootstrap_breadcrumbs %} 
+{% block breadcrumbs%} 
+    {% breadcrumb "Clouds" "/" %} 
+    {% breadcrumb node_name|title "" %} 
+    {% breadcrumb "Cloud Specification" "" %} 
+{% endblock %} 
+{% block content%}
+<form action="#" method="post">
+    {% set fieldSetName = 3 %}
+    <!-- Displays only if the user have privilege -->
+    {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+        <div class="col-sm-12 vertical-space">
+            <button type="submit" class="btn btn-info active" value="Databag Configure">
+                <img src="../site_media/images/save_Icon.png">Databag Configure
+            </button>
+        </div>
+    {% endif %} 
+    {% for categoryList in categoryLists %}
+        <div class="col-sm-12 panel-white db-gp">
+            {% for field in forms %} 
+                {% if field.help_text|title == categoryList|title %} 
+                    {% if fieldSetName != field.help_text %}
+                    <div class="blk-title-box row">
+                        <h4>{{ field.help_text|replace:"/_/ "|title }}</h4>
+                    </div>
+                    {% endif %}
+                    <div class="col-xs-6 vertical-space">
+                        <div class="col-xs-5">{{ field.label_tag|title }}</div>
+                        <div class="col-xs-7">{{ field }}{{ field.errors }}</div>
+                    </div>
+                    {% set fieldSetName = field.help_text %} 
+                {% endif %} 
+            {% endfor %}
+        </div>
+    {% endfor %} 
+    {% csrf_token %}
+</form>
+{% endblock %}

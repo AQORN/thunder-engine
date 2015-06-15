@@ -1,0 +1,131 @@
+<div id="userContent" class="row">
+    <div id="userContainers">		 
+        <div id="userCreate" class="col-sm-5 left-padding">
+            <form id="user_add_form">
+                <br><br>
+                <b>CREATE NEW USERS</b>
+                <hr class="divider">
+                <div class="row">
+                    <div class="col-sm-12" id="user_list">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="account_name" id="account_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="accountErr">
+                                <div id="accountErrText"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label>Username</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="user_name" id="user_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="userErr">
+                                <div id="userErrText"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label>Password</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="password" id="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="passwordErr">
+                                <div id="passwordErrText"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input type="text" name="email" id="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="emailErr">
+                                <div id="emailErrText"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <label>Role</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select name="role_list" id="role_list">
+                                        <option value="" disabled>Select Role</option>
+                                        {% for role in view.domainRoles %}
+                                            <option value="{{role.role_id}}">{{role.role}}</option>
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" id="userRoleErr">
+                                <div id="userRoleErrText"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="button" name="user_add" id="user_add" value="Create User"
+                                    style="float: right;" class="btn btn-info active">
+                                        CREATE USER                                    
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form> 
+		</div>
+	</div>
+	<div id="userList" class="col-sm-7 alert-col2-left" >
+        <div class="col-sm-12"> 
+            <br><br><br>
+            <b>EXISTING USERS</b>
+            <hr class="divider">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <b>Role</b>
+                    </div>
+                    <div class="col-sm-6">
+                        <b>User</b>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="row message-padding">
+                <div class="" id="userRoleList"></div>
+            </div>
+            <!-- {% for user in view.userRoles %}
+                {% if request.session.cloudAccessMapData.roleId == 1 or request.session.cloudAccessMapData.roleId == user.role_id %}
+                    <tr class="{% cycle 'trrows' 'row2' %}">
+                        <td>{{user.role}}</td>
+                        <td>{{user.user}}</td>
+                    </tr>
+                    <tr><td class="blank-line"></td></tr>
+                {% endif %}
+            {% endfor %} -->                
+        </div>		
+	</div>	
+</div>

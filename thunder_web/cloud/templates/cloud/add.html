@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Add Cloud{% endblock %}
+{% block head %}Add Cloud{% endblock %}
+{% block content %}
+<form method="post" action=".">
+    {% csrf_token %} {% for field in form %}
+    <div class="col-xs-12 ">
+        <div class="col-xs-2">{{ field.label_tag|title }}</div>
+        <div class="col-xs-4">{{ field }}</div>
+        {% if field.errors %}
+        <div class="col-xs-4">{{field.errors}}</div>
+        {% endif %}
+        <div class="col-xs-2">
+            <button class="btn btn-info active" id="add-cloud" type="submit">
+                <img width="15" height="10" src="../site_media/images/addcloud.png">Add Cloud 
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</form>
+{% endblock %}

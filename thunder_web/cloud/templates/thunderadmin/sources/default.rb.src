@@ -1,0 +1,40 @@
+#
+# Cookbook Name:: thunder-install
+# Recipe:: default
+#
+# Copyright 2015, AQORN
+#
+# All rights reserved - Do Not Redistribute
+#
+
+# thunder network type
+default['thunder']['network_type'] = "{{network_type}}"
+
+# thunder installation values
+default['thunder']['install_nic'] = "{{thunder_nic}}"
+default['thunder']['install_ip'] = "{{thunder_ip}}"
+default['thunder']['install_subnet_mask'] = "{{thunder_netmask}}"
+default['thunder']['install_gateway'] = "{{thunder_gateway}}"
+default['thunder']['install_dns'] = "{{thunder_dns}}"
+  
+# thunder pxe network values
+default['thunder']['pxe_nic'] = "{{pxe_nic}}"
+default['thunder']['pxe_pool_start'] = "{{pxe_pool_start}}"
+default['thunder']['pxe_pool_end'] = "{{pxe_pool_end}}"
+default['thunder']['pxe_subnet_mask'] = "{{pxe_netmask}}"
+default['thunder']['pxe_gateway'] = "{{pxe_gateway}}"
+default['thunder']['pxe_subnet'] = "{{pxe_subnet}}"
+default['thunder']['pxe_ip'] = "{{pxe_ip}}"
+
+# thunder setup packages
+default['thunder']['install_setup'] = {
+  'cobbler_packages' => ['cobbler'],
+  'zabbix_packages' => ['zabbix-server-mysql'],
+  'package_options' => "-o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef'"
+}
+
+# Set the chef server path
+default['thunder']['chef_server_path'] = "/opt/thunder_web/chef-repo"
+
+# Set the deb source folder
+default['thunder']['deb_src_path'] = "/opt"

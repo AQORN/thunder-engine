@@ -1,0 +1,12 @@
+<div id="supportContent">
+{% for proces in process %}
+    <div class="{{proces.status}} ">
+        <b>{{proces.name|title}}</b><br>
+        
+        {% for logs in proces.servicename%}
+               {{logs}}<br>
+            {%endfor%}
+    </div>
+    <br>
+{% endfor %}
+</div>

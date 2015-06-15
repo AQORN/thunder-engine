@@ -1,0 +1,51 @@
+<div id="log-content">
+    <div id="log-form">
+        <form id="log-form" onclick="return false;" action="#">
+            <div class="row vertical-space pad-left">
+                <div class="col-sm-2 col-xs-2">
+                    <b>Cloud</b>
+                    <select id="cloud-list">
+                        <option value="">Select...</option>
+                        {% for cloud_list in cloud_lists %}
+                            <option value="{{cloud_list.id}}">{{cloud_list.cloud_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <b>System</b>
+                    <select id="node-list">
+                        <option value="">Select...</option>
+                        {% for node_list in node_lists %}
+                            <option value="{{node_list.id}}">{{node_list.host_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-2 col-xs-2">
+                    <b>Process or Service</b>
+                    <select id="role-list">
+                        <option value="">Select...</option>
+                        {% for role_list in role_lists %}
+                            <option value="{{role_list.id}}">{{role_list.role_typename}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="left go-btn col-sm-1 col-xs-1">
+                    <button type="button" id="searchLog" class="btn btn-info active">GO</button>
+                </div>
+                <div class="col-sm-5 col-xs-5 vertical-space log-info">
+                    <p>Log entries 3 days old are not stored in Thunder. Use
+                        RSYSLOG for older entries.</p>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="full-border col-sm-12 col-xs-12" id="logContainer">
+                <div id="log-details-tab">
+                {% for log in resultsList %}
+                    <p class='log-cont'><b>{{log.updated_time}} :</b> {{log.log_details}}</p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

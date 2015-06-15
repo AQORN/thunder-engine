@@ -1,0 +1,31 @@
+<div class="col-sm-12 sb">
+    <!-- Displays only if a cloud is selected -->
+    {% if request.session.cloudId %}
+        <div class="row sidebar-panel-cloud line-div">
+            {{node_name}}
+        </div>
+        {% if cloud_id %}
+            <div class="row sidebar-panel">
+                <a  id="roles_menu" href="{{baseUrl}}/roles/{{cloud_id}}">ROLES</a>
+            </div>
+        {% endif %}
+        <div class="row sidebar-panel">
+            <a href="{{baseUrl}}/clouds/network/">NETWORKING</a>
+        </div> 
+        <div class="row sidebar-panel">
+            <a id="options_menu" href="{{baseUrl}}/clouds/options">OPTIONS</a>
+        </div> 
+        <!-- Displays only if the user have privilege -->
+        {% if 'deploy_cloud' in request.session.cloudAccessMapData.featureAccess %}
+            <div class="row sidebar-panel">
+                <a id="tasks_menu" href="{{baseUrl}}/clouds/task">TASKS</a>
+            </div>
+        {% endif %}
+        <div class="row sidebar-panel">
+            <a id="databag_menu" href="{{baseUrl}}/cloud/databag">CREDENTIALS</a>
+        </div> 
+        <!-- <div class="row sidebar-panel">
+            <a id="cloud_spec_menu" href="{{baseUrl}}/cloud/config">CLOUD SPECIFICATION</a>
+        </div> -->
+    {% endif %}
+</div>

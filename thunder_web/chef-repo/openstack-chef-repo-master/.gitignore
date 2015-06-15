@@ -1,0 +1,11 @@
+.berkshelf/
+.bundle/
+.chef/
+.cookbooks/
+.kitchen/
+.vagrant/
+.vagabond/
+.zero-knife.rb
+berks.json
+Berksfile.lock
+Gemfile.lock

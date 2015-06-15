@@ -1,0 +1,17 @@
+<li class="alert-head">ALERTS</li>
+{% for alert in alerts %}
+<li class="alert-entry {% if alert.visited == 0 %} bgCol {% endif %}">
+    <div class='alert_cont'>
+        <p id={{alert.id}} class="view_alert_log">
+        {% if alert.visited == 0 %}
+            <strong>{{alert.alert_content|safe}}</strong>
+        {% else %}
+            {{alert.alert_content|safe}}
+        {% endif %}
+        </p>
+    </div>
+</li>
+{% endfor %}
+ <li class="view-all-alerts">
+     <a id="all-alert" href="#">View All Alerts</a>
+ </li>

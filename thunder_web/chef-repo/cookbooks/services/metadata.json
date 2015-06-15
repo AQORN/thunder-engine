@@ -1,0 +1,29 @@
+{
+  "name": "services",
+  "description": "Installs/Configures services",
+  "long_description": "Description\n===========\n\nlets you preform a variety of actions on many services easily\n\nRequirements\n============\nNone\n\nAttributes\n==========\nnode.services = { }\n\nUsage\n=====\n```\nnode.services = { \"service_name\": [ \"enable\" ], \"another_service\": [ \"disable\", \"stop\" ], \"service_name_2\": [\"restart\"]  }\n```\n\nNote setting service_name_2 to \"restart\" could cause a service to flap each time chef runs\n\nExpected usage might look like this:\n\n```\n\n\"services\": {\n    \"acpid\":      [\"stop\", \"disable\"],\n    \"atd\":        [\"stop\", \"disable\"],\n    \"autofs\":     [\"stop\", \"disable\"],\n    \"bluetooth\":  [\"stop\", \"disable\"],\n    \"cpuspeed\":   [\"stop\", \"disable\"],\n    \"cups\":       [\"stop\", \"disable\"],\n    \"firstboot\":  [\"stop\", \"disable\"],\n    \"gpm\":        [\"stop\", \"disable\"],\n    \"haldaemon\":  [\"stop\", \"disable\"],\n    \"hidd\":       [\"stop\", \"disable\"],\n    \"mdmonitor\":  [\"stop\", \"disable\"],\n    \"pcscd\":      [\"stop\", \"disable\"],\n    \"rawdevices\": [\"stop\", \"disable\"],\n    \"rpcgssd\":    [\"stop\", \"disable\"],\n    \"rpcidmapd\" : [\"stop\", \"disable\"],\n    \"smartd\":     [\"stop\", \"disable\"]\n}\n```\n",
+  "maintainer": "Blue Box Group, LLC",
+  "maintainer_email": "support@bluebox.net",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.2.0"
+}

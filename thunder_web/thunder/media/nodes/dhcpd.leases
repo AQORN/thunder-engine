@@ -1,0 +1,25 @@
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.2.4
+
+server-duid "\000\001\000\001\034\277u\304\000\032\240^o\261";
+
+lease 172.17.4.100 {
+  starts 2 2015/04/14 11:00:14;
+  ends 2 2015/04/14 17:00:14;
+  cltt 2 2015/04/14 11:00:14;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 6c:62:6d:ae:c5:b9;
+  set vendorclass = "PXEClient:Arch:00000:UNDI:002001";
+}
+lease 172.17.4.100 {
+  starts 2 2015/04/14 11:00:41;
+  ends 2 2015/04/14 17:00:41;
+  cltt 2 2015/04/14 11:00:41;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 6c:62:6d:ae:c5:b9;
+  set vendorclass = "d-i";
+}

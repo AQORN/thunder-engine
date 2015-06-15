@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Welcome to {{thunder_name}}{% endblock %}
+{% block head %}Welcome to {{thunder_name}}{% endblock %}
+{% block content %}
+	{% if user.username %}
+		<p>Welcome {{ user.username }}!
+		Here you can store and share bookmarks!</p>
+	{% else %}
+		<p>Welcome anonymous user!
+		You need to <a href="/login/">login</a>
+		before you can store and share bookmarks.</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Tasks{% endblock %}
+{% block head %}Tasks{% endblock %}
+{% block menutab %}
+	{% include "menu.html" %}
+{% endblock %}
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+    {% breadcrumb "Clouds" "/" %}
+    {% breadcrumb node_name|title "" %}
+    {% breadcrumb "Tasks" "" %}
+{% endblock %}
+{% block content %} 
+<!-- top section -->
+<div id="panel-task" class="col-sm-12 col-xs-12">
+                        <div class="row">
+                        {% if 'deploy_cloud' in request.session.cloudAccessMapData.featureAccess %}
+                            <div id="first-panel" class="col-sm-6 col-xs-6 first-panel panel-white pw-col6">
+                                <div class="blk-title-box row">
+                                    <h4>Deploy Cloud</h4>
+                                </div>
+                                <p class="vertical-space">This will deploy the current cloud. If the cloud already exists, thunder will deploy any applied changes that were introduced to the configuration since the cloud was last deployed. Thunder will provide a review of all changes and request confirmation before execution.</p> 
+                                    <input type="submit" {% if enableDeploy == False %} disabled="true" {% endif %}  class="btn btn-info active" value="Deploy with thunder" id="deploy" class="submit" />
+ 
+                            </div>
+                             {% endif %}
+                             {% if  'del_cloud' in request.session.cloudAccessMapData.featureAccess %}
+                            <div id="second-panel" class="col-sm-6 col-xs-6 second-panel panel-white pw-col6">
+                                <div class="blk-title-box row">
+                                    <h4>Delete Cloud</h4>
+                                </div>
+                                <p class="vertical-space">This will permanently remove the current cloud configuration and software from the target nodes and they will return to a default state for use with other clouds. Thunder will request confirmation before execution </p>
+                                
+                                <form onclick="return confirmUpdate('Do you wish to delete cloud?');" action="{{ base_url }}clouds/delete" method="post" >{% csrf_token %}
+                                <button class="btn btn-info active" id="delete-cloud" type="submit"><img width="15" height="10" src="../site_media/images/DeleteIcon.png"> DELETE CLOUD</button>
+ </form>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- 
+<div class="top-head">
+     
+    {% if 'deploy_cloud' in request.session.cloudAccessMapData.featureAccess %}
+        <div class="col-xs-6">
+            <div class="section-title">Deploy Cloud</div>
+            <div class="section-block">This will deploy the current cloud. If the cloud already exists, thunder will deploy any applied changes that were intoduced to the configuration since the cloud was last deployed. Thunder will provide a review of all changes and request confirmation before execution.</div>
+            <div class="delete-cloud"><input type="submit" {% if enableDeploy == False %} disabled="true" {% endif %}  class="btn btn-danger btn-sm btn-left" value="Deploy with thunder" id="deploy" class="submit" /></div>
+        </div>
+    {% endif %}
+   
+    {% if  'del_cloud' in request.session.cloudAccessMapData.featureAccess %}
+        <div class="col-xs-6">
+            <div class="section-title">Delete Cloud</div>
+            <div class="section-block">This will permanently remove the current cloud configuration and sowtware from the target nodes and they will return to a default state for use with other clouds. Thunder will request confirmation before execution</div>
+            <div class="delete-cloud"><form onclick="return confirmUpdate('Do you wish to delete cloud?');" action="{{ base_url }}clouds/delete" method="post" >{% csrf_token %}<input id="delete-cloud" type="submit" class="btn btn-danger btn-sm btn-left" value="delete cloud" class="submit" /></form></div>         
+        </div>
+    {% endif %}
+</div> -->
+{% endblock %}

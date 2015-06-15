@@ -1,0 +1,282 @@
+{% extends "base.html" %} 
+{% block title %}Network {% endblock %}
+{%block menutab %} 
+    {% include "menu.html" %} 
+{% endblock %} 
+{% load django_bootstrap_breadcrumbs %} 
+{% block breadcrumbs %} 
+    {% breadcrumb "Clouds" "/" %} 
+    {% breadcrumb node_name|title "" %} 
+    {% breadcrumb "Networking" "" %} 
+{% endblock %} 
+{% block content %} 
+{{error}}
+<form action="." method="post">
+    <!-- top section -->
+    <div class="top-head col-sm-12">
+        <!-- Displays only if the user have privilege -->
+        <div class="left"><h3>Networking</h3></div>
+        <div class="right">
+            <div id="gre-tunnel-desc" class="left">
+                <div class="verify-time" id="last_verify">Last Verification: {{lastVerfied|default:"Not Available"}}</div>
+                <div class="verify-status">Status: <b id="verify_status">
+                    {{verifyStatus|yesno:"Successful,Failed,Not Available"}}
+                </div>
+            </div>
+            <div id="network-submit" class="left hori-space">
+                {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+                    <button type="submit" class="btn btn-info active" value="Save Changes">
+                        <img src="{{ base_url }}site_media/images/save_Icon.png">Save Settings
+                    </button>
+                    <button class="btn btn-info active" value="Verify Networks" onclick="verifyNetwork(); return false;" type="submit">Verify Networks</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% csrf_token %}
+    <div class="fieldWrapper">
+        <div class="col-sm-12 vertical-space">
+            <div id="public-network" class="panel-white">
+                <div id="floating-network-title" class="col-sm-12 blk-title-box">
+                    <h4>Public Network</h4>
+                </div>
+                <div id="public-network-desc">
+                    <p class="col-sm-12 vertical-space">This network is for guest access to destinations outside the cloud and is assigned to: <span class="interface">eth1</span></p>
+                </div>
+                {{public_network_form.management_form}}
+                {{public_network_form.non_form_errors}} 
+                {% for pform in public_network_form%}
+                    <div class="col-xs-12 vertical-space">
+                        <div id="public-{{forloop.counter}}"
+                            class="col-sm-12 public-network-container">
+                            <div class="col-sm-2 col-xs-5">
+                                <div class="text-right">{{pform.ip_range_from.label_tag}}</div>
+                            </div>
+                            <div class="col-sm-3 public-ip-from">{{pform.ip_range_from}}{{pform.ip_range_from.errors}}</div>
+                            <div class="col-sm-3 public-ip-to">{{pform.ip_range_to}}{{pform.ip_range_to.errors}}</div>
+                            {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+                                <div class="public-action">
+                                    {% if forloop.counter == 1 %} 
+                                        <span class="add-public">Add Another</span> 
+                                    {% else %} 
+                                        <span class="remove-public">Remove</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-xs-12 vertical-space">
+                    <div class="col-sm-12">
+                        <div class="col-xs-2 col-sm-2">
+                            <div class="text-right">{{form.public_cidr.label_tag}}</div>
+                        </div>
+                        <div class="col-sm-3 public-ip-from">{{form.public_cidr}}{{form.public_cidr.errors}}</div>
+                        {% if settings.ENABLE_VLAN_TAG %}
+                            <div class="col-sm-7">
+                                <div class="checkbox col-sm-1 col-xs-1 vlan_tag_enable">
+                                    {{form.public_use_vlan}}
+                                </div>
+                                <div class="col-sm-11 vlan_tag">
+                                    {{form.public_use_vlan.label_tag}}
+                                    {{form.public_vlan}}{{form.public_vlan.errors}}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- floating network section -->
+        <div class="col-sm-12 vertical-space">
+            <div class="panel-white" id="floating-network">
+                <div id="floating-network-title"
+                    class="col-sm-12 blk-title-box">
+                    <h4>Floating IP Network</h4>
+                </div>
+                <div id="floating-network-desc">
+                    <p class="col-sm-12 vertical-space">This network is for accessing guests from sources outside the cloud and is currently assigned to: <span class="interface">eth1</span></p>
+                </div>
+                {{floating_network_form.management_form}}
+                {{floating_network_form.non_form_errors}} 
+                {% for fform in floating_network_form%}
+                    <div class="col-xs-12 vertical-space">
+                        <div class="col-sm-12 float-network-ips" id="float-{{forloop.counter}}">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2 col-xs-5">
+                                    <div class="text-right">{{fform.ip_range_from.label_tag}}</div>
+                                </div>
+                                <div class="col-sm-3 float-ip-from">{{fform.ip_range_from}}{{fform.ip_range_from.errors}}</div>
+                                <div class="col-sm-3 float-ip-to">{{fform.ip_range_to}}{{fform.ip_range_to.errors}}</div>
+                                {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+                                    <div class="float-action">
+                                        {% if forloop.counter == 1 %} 
+                                            <span class="add-float">Add Another</span> 
+                                        {% else %} 
+                                            <span class="remove-float">Remove</span>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-12 vertical-space">
+                                <div class="col-sm-2">
+                                    <div class="text-right">{{fform.ip_cidr.label_tag}}</div>
+                                </div>
+                                <div class="col-sm-3 float-ip-from">{{fform.ip_cidr}}{{fform.ip_cidr.errors}}</div>
+                                {% if settings.ENABLE_VLAN_TAG %}
+                                    <div class="col-sm-6">
+                                        <div class="checkbox col-sm-1 vlan_tag_enable">
+                                            {{fform.use_vlan}}
+                                        </div>
+                                        <div class="col-sm-11 vlan_tag">
+                                            {{fform.use_vlan.label_tag}}
+                                            {{fform.vlan_tag}}{{fform.vlan_tag.errors}}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Internal network section -->
+        <div class="col-sm-12 vertical-space">
+            <div class="panel-white" id="internal-network">
+                <div id="internal-network-title"
+                    class="col-sm-12 blk-title-box">
+                    <h4>Management Network</h4>
+                </div>
+                <div id="internal-network-desc">
+                    <p class="col-sm-12 vertical-space">This network is for internal OPENSTACK management only and is currently assigned to: <span class="interface">eth1</span></p>
+                </div>
+                <div class="col-xs-12 vertical-space">
+                    <div id="internal-network-cidr" class="col-sm-12">
+                        <div class="col-sm-2 col-xs-2">
+                            <div class="text-right"
+                                id="internal-cidr-label">
+                                {{form.in_network_cidr.label_tag}}</div>
+                        </div>
+                        <div id="internal-cidr-input" class="col-sm-3 cidr_val">
+                            {{form.in_network_cidr}}{{form.in_network_cidr.errors}}
+                        </div>
+                        {% if settings.ENABLE_VLAN_TAG %}
+                            <div class="col-sm-7">
+                                <div class="checkbox col-sm-1 col-xs-1 vlan_tag_enable">
+                                    {{form.in_use_vlan}}
+                                </div>
+                                <div class="col-sm-11 vlan_tag">
+                                    {{form.in_use_vlan.label_tag}}
+                                    {{form.in_vlan}}{{form.in_vlan.errors}}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Storage network section -->
+        <div class="col-sm-12 vertical-space">
+            <div class="panel-white" id="storage-network">
+                <div id="storage-network-title"
+                    class="col-sm-12 blk-title-box">
+                    <h4>Storage Network</h4>
+                </div>
+                <div id="storage-network-desc">
+                    <p class="col-sm-12 vertical-space">This network is for guest access block and object storage services and currently assigned to: <span class="interface">eth1</span></p>
+                </div>
+                <div class="col-xs-12 vertical-space">
+                    <div id="internal-network-cidr" class="col-sm-12 ">
+                        <div class="col-sm-2 col-xs-2">
+                            <div class="text-right"
+                                id="internal-cidr-label">{{form.st_network_cidr.label_tag}}</div>
+                        </div>
+                        <div id="internal-cidr-input" class="col-sm-3 cidr_val">{{form.st_network_cidr}}{{form.st_network_cidr.errors}}</div>
+                        {% if settings.ENABLE_VLAN_TAG %}  
+                            <div class="col-sm-7">
+                                <div class="checkbox col-sm-1 col-xs-1 vlan_tag_enable">
+                                    {{form.st_use_vlan}}
+                                </div>
+                                <div class="col-sm-11 vlan_tag">
+                                    {{form.st_use_vlan.label_tag}}
+                                    {{form.st_vlan}}{{form.st_vlan.errors}}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- common settings -->
+        <div class="col-sm-12 vertical-space">
+            <div class="panel-white" id="common-setting">
+                <div id="common-setting-title"
+                    class="col-sm-12 blk-title-box">
+                    <h4>Common Setting</h4>
+                </div>
+                <div id="common-setting-desc">
+                    <p class="col-sm-12 vertical-space">These settings are apply to all guest and service that require themp</p>
+                </div>
+                {{dns_server_form.management_form}}
+                {{dns_server_form.non_form_errors}} 
+                {% for dnsform in dns_server_form%}
+                    <div class="col-xs-12 vertical-space">
+                        <div id="dns-{{forloop.counter}}"
+                            class="col-sm-12 dns-server">
+                            <div class="col-sm-3 col-xs-6 text-right">
+                                {{dnsform.dns_server.label_tag}}</div>
+                            <div class="col-sm-3 dns-server-from">{{dnsform.dns_server}}{{dnsform.dns_server.errors}}</div>
+                            {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+                                <div class="dns-action">
+                                    {% if forloop.counter == 1 %} 
+                                        <span class="add-dns">Add Another</span> 
+                                    {% else %} 
+                                        <span class="remove-dns">Remove</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <!-- Displays only if the user have privilege -->
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-xs-12 vertical-space">
+                    <div class="col-sm-12" id="gre-tunnel">
+                        <div class="col-sm-3 col-xs-9 text-right"
+                            id="gre-tunnel-label">{{form.gre_tunnel_from.label_tag}}</div>
+                        <div id="gre-tunnel-from" class="col-sm-3">{{form.gre_tunnel_from}}{{form.gre_tunnel_from.errors}}</div>
+                        <div id="gre-tunnel-to" class="col-sm-3">{{form.gre_tunnel_to}}{{form.gre_tunnel_from.errors}}</div>
+                    </div>
+                </div>
+                {{private_network_form.management_form}}
+                {{private_network_form.non_form_errors}} 
+                {% for private_form in private_network_form%}
+                    <div class="col-xs-12 vertical-space">
+                        <div class="col-sm-12 private-network" id="private-{{forloop.counter}}">
+                            <div id="pg-network-label" class="col-sm-3 text-right">
+                                {{private_form.network_cidr.label_tag}}
+                            </div>
+                            <div id="pg-network-input" class="col-sm-3">{{private_form.network_cidr}}{{private_form.network_cidr.errors}}</div>
+                            {% if 'edit_config' in request.session.cloudAccessMapData.featureAccess %}
+                                <div class="dns-action">
+                                    {% if forloop.counter == 1 %} 
+                                        <span class="add-private-network">Add Another</span>
+                                        <!-- Display the error message -->
+                                        {% if form_error.private_form_error %}
+                                        <ul class="errorlist">
+                                            <li>{{form_error.private_form_error}}</li>
+                                        </ul>
+                                    {% endif %} 
+                                    {% else %} 
+                                        <span class="remove-private-network">Remove</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <input id="id_cloud" name="cloud" type="hidden" value="{{cloud_id}}" />
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,96 @@
+<div id="domainContent">
+	<div id="domainContainers row">
+		<div id="domainNotifications" class="col-sm-5 left-padding">
+            <br><br><br>
+			<ul class="bulletList">
+				<li>Domains represent logical containers of cloud configurations against which permissions are applied by individual roles</li>
+				<li>Scopes represent individual clouds</li>
+				<li>DOMAINS IN USER CANNOT BE REMOVED</li>
+			</ul>
+    		<div id="domainCreate">
+    			<form id='domain_add_form'>
+                    <b>CREATE DOMAINS</b>
+                    <hr class="divider">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>Domain</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" id="domain_name" name="domain_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12" id="domainErr">
+                                <div id="domainErrText"></div>                        
+                            </div>                    
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>Scope</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <select name="scope_list" id="scope_list" multiple>
+                                        <option value="" disabled>Select Scope</option>
+                                         {% for cloud in view.cloudList %}
+                                             <option value="{{cloud.id}}">{{cloud.name}}</option>
+                                         {% endfor %}
+                                </select>
+                            </div>
+                            <!-- <div class="col-sm-2">
+                                <input type="button" name="" id="" value="+" class="btn btn-blue">
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12" id="scopeErr">
+                                <div id="scopeErrText"></div>                        
+                            </div>                    
+                    </div>
+                    <div class="row">
+                        <button type="button" name="domain_add" style="float: right"
+                            id="domain_add" value="Create Domain"
+                            class="btn btn-info active">CREATE DOMAIN</button>
+                    </div>                
+                </form> 
+            </div>
+		</div>
+	</div>
+	<div id="domainList" class="col-sm-7 alert-col2-left">
+		<div class="col-sm-12">	
+            <br><br><br>
+            <b>EXISTING DOMAINS</b>
+            <hr class="divider">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-5">
+                        <b>Domain</b>
+                    </div>
+                    <div class="col-sm-6">
+                        <b>Scope</b>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+            <div class="row message-padding">
+                    <div class="" id="cloudDomainList">
+                    {% for domain in view.domainCloudList %}
+                        <div class="col-sm-12">
+                            <div class="patch-releases-left">
+                                <div class="col-sm-6 textBold">{{domain.domain_name}}</div>
+                                <div class="col-sm-6">{{domain.cloud_name}}</div>
+                            </div>
+                            {% if domain.domain_id != 1 %}
+                                <a href='#' onclick='javascript:void(0)' id="domain-{{domain.domain_id}}" class="domain-delete-icon">
+                                    <div class="col-sm-1 patch-releases-btn">X</div>
+                                </a>
+                            {% endif %}
+                        </div>  
+                {% endfor %} 
+                </div>
+            </div>
+        </div>
+	</div>	
+</div>

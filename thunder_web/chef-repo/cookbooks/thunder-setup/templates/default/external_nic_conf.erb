@@ -1,0 +1,13 @@
+auto <%= @nic_name %>
+iface <%= @nic_name %> inet manual
+  pre-up ifconfig $IFACE up
+  post-down ifconfig $IFACE down
+<% if @nic_subnet %>
+  netmask  <%= @nic_subnet %>
+<% end %>
+<% if @nic_gateway %>
+  gateway <%= @nic_gateway %>
+<% end %>
+<% if @vlan_tag %>
+  vlan-raw-device <%= @nic_device %>
+<% end %>

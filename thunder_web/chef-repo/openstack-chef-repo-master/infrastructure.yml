@@ -1,0 +1,62 @@
+berksfile:
+    options: '--no-freeze --halt-on-frozen'
+
+cookbooks:
+
+roles:
+- allinone-compute:
+- ceph-mds:
+- ceph-mon:
+- ceph-osd:
+- ceph-radosgw:
+- ceph-tgt:
+- os-compute-single-controller:
+- os-base:
+- os-ops-caching:
+- os-ops-messaging:
+- os-ops-database:
+- os-block-storage:
+- os-block-storage-api:
+- os-block-storage-scheduler:
+- os-block-storage-volume:
+- os-client:
+- os-compute-api:
+- os-compute-api-ec2:
+- os-compute-api-metadata:
+- os-compute-api-os-compute:
+- os-compute-cert:
+- os-compute-conductor:
+- os-compute-scheduler:
+- os-compute-setup:
+- os-compute-vncproxy:
+- os-compute-worker:
+- os-dashboard:
+- os-identity:
+- os-image:
+- os-image-api:
+- os-image-registry:
+- os-image-upload:
+- os-telemetry-agent-central:
+- os-telemetry-agent-compute:
+- os-telemetry-api:
+- os-telemetry-collector:
+- os-network:
+- os-network-server:
+- os-network-l3-agent:
+- os-network-dhcp-agent:
+- os-network-metadata-agent:
+- os-network-openvswitch:
+- os-object-storage:
+- os-object-storage-account:
+- os-object-storage-container:
+- os-object-storage-management:
+- os-object-storage-object:
+- os-object-storage-proxy:
+
+environments:
+- example:
+- testing:
+
+data bags:
+
+nodes:

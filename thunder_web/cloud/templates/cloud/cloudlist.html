@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Clouds{% endblock %}
+{% block head %}Clouds{% endblock %}
+{% block content %}
+    <div class="col-sm-12 col-xs-12">
+                {% if clouds %}
+                    <div id="cloudList">
+                    {% for cloud in clouds %}
+                        <div class="cloudata">
+                            <a href="{{ base_url }}roles/{{ cloud.id }}" class="cloudDetails">{{ cloud.cloud_name|title }}</a>
+                        </div> 
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <!-- Displays only if the user have privilege -->	
+                {% if 'add_cloud' in request.session.cloudAccessMapData.featureAccess %}
+                    <div class="cloudata" id="cloud_add">
+                        <a href="{{ base_url }}cloudAdd" class="cloudAdd">Create a New cloud</a>
+                    </div> 
+                {% endif %}
+    </div>         
+{% endblock %}

@@ -1,0 +1,18 @@
+# Install with: `pip install -r requirements.txt`
+
+Django==1.6.4
+djangorestframework
+django-shoogie
+django-tables2
+django-url-breadcrumbs
+django-bootstrap-breadcrumbs
+django-jinja
+django-tabination
+mysql-python
+pyparsing==2.0.3 
+pycrypto
+pycurl
+chardet
+zabbix_api
+netaddr
+requests
